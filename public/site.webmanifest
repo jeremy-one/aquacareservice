@@ -1,0 +1,16 @@
+{
+  "name": "Aquacare Service",
+  "short_name": "Aquacare",
+  "description": "Construction et entretien de piscines dans le Var (83)",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#06b6d4",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

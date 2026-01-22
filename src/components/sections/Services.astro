@@ -1,0 +1,379 @@
+---
+const services = [
+  {
+    number: '01',
+    title: 'Construction',
+    description: 'De la conception à la réalisation, nous créons des piscines sur-mesure qui s\'intègrent parfaitement à votre environnement et à vos envies.',
+    features: ['Béton armé', 'Coque polyester', 'Design sur-mesure', 'Intégration paysagère'],
+    icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',
+  },
+  {
+    number: '02',
+    title: 'Entretien',
+    description: 'Un service d\'entretien professionnel pour une eau cristalline toute l\'année. Contrats adaptés à vos besoins.',
+    features: ['Contrats annuels', 'Analyse chimique', 'Nettoyage complet', 'Hivernage'],
+    icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
+  },
+  {
+    number: '03',
+    title: 'Rénovation',
+    description: 'Redonnez vie à votre piscine avec nos services de rénovation complète : liner, carrelage, équipements modernes.',
+    features: ['Changement liner', 'Réfection étanchéité', 'Modernisation', 'Mise aux normes'],
+    icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15',
+  },
+];
+---
+
+<section class="services" id="services">
+  <div class="services__container container">
+    <!-- Header -->
+    <div class="services__header">
+      <span class="services__label">Nos services</span>
+      <h2 class="services__title">
+        <span class="services__title-line">Ce que nous</span>
+        <span class="services__title-line services__title-line--gradient">faisons le mieux</span>
+      </h2>
+      <p class="services__intro">
+        Depuis 2009, nous accompagnons les habitants du Var dans tous leurs projets piscine.
+      </p>
+    </div>
+
+    <!-- Services grid -->
+    <div class="services__grid">
+      {services.map((service, index) => (
+        <article class="service-card" style={`--delay: ${index * 0.15}s`}>
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d={service.icon} stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <span class="service-card__number">{service.number}</span>
+
+          <h3 class="service-card__title">{service.title}</h3>
+
+          <p class="service-card__description">{service.description}</p>
+
+          <ul class="service-card__features">
+            {service.features.map((feature) => (
+              <li class="service-card__feature">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+
+          <a href={`/services#${service.title.toLowerCase()}`} class="service-card__link">
+            <span>En savoir plus</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M17 7H7M17 7V17"/>
+            </svg>
+          </a>
+
+          <div class="service-card__bg"></div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="services__cta">
+      <p class="services__cta-text">Besoin d'un service sur-mesure ?</p>
+      <a href="/contact" class="btn btn--primary" data-magnetic>
+        <span>Nous contacter</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Decorative elements -->
+  <div class="services__deco services__deco--1"></div>
+  <div class="services__deco services__deco--2"></div>
+</section>
+
+<style>
+  .services {
+    position: relative;
+    padding-block: var(--section-gap);
+    background: var(--color-light);
+    overflow: hidden;
+  }
+
+  .services__container {
+    position: relative;
+    z-index: var(--z-base);
+  }
+
+  /* Header */
+  .services__header {
+    text-align: center;
+    margin-bottom: var(--space-16);
+    max-width: 700px;
+    margin-inline: auto;
+  }
+
+  .services__label {
+    display: inline-block;
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .services__title {
+    font-size: var(--text-section);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-tight);
+    color: var(--color-dark);
+    margin-bottom: var(--space-6);
+  }
+
+  .services__title-line {
+    display: block;
+  }
+
+  .services__title-line--gradient {
+    background: var(--gradient-ocean);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .services__intro {
+    font-size: var(--text-lg);
+    color: var(--color-gray-600);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Grid */
+  .services__grid {
+    display: grid;
+    gap: var(--space-8);
+    margin-bottom: var(--space-16);
+  }
+
+  @media (min-width: 768px) {
+    .services__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* Service Card */
+  .service-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-8);
+    background: var(--color-white);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-md);
+    transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease;
+    overflow: hidden;
+  }
+
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .service-card__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-ocean);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease-out-expo);
+  }
+
+  .service-card:hover .service-card__bg {
+    transform: scaleX(1);
+  }
+
+  .service-card__icon {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #E0F4F3;
+    border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
+    color: var(--color-primary);
+    margin-bottom: var(--space-6);
+    margin-top: 40px;
+  }
+
+  /* Triangle pointe de la goutte */
+  .service-card__icon::before {
+    content: '';
+    position: absolute;
+    top: -39px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 26px solid transparent;
+    border-right: 28px solid transparent;
+    border-bottom: 50px solid #E0F4F3;
+  }
+
+  /* Reflet brillant sur la goutte */
+  .service-card__icon::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+  }
+
+  .service-card__icon svg {
+    width: 28px;
+    height: 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .service-card__number {
+    position: absolute;
+    top: var(--space-6);
+    right: var(--space-6);
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: var(--font-bold);
+    color: var(--color-gray-300);
+  }
+
+  .service-card__title {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-bold);
+    color: var(--color-dark);
+    margin-bottom: var(--space-4);
+  }
+
+  .service-card__description {
+    font-size: var(--text-base);
+    color: var(--color-gray-600);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-6);
+  }
+
+  .service-card__features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-8);
+    flex-grow: 1;
+  }
+
+  .service-card__feature {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-gray-600);
+  }
+
+  .service-card__feature svg {
+    width: 16px;
+    height: 16px;
+    color: var(--color-secondary);
+    flex-shrink: 0;
+  }
+
+  .service-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: auto;
+    transition: gap 0.3s var(--ease-out-expo);
+  }
+
+  .service-card__link:hover {
+    gap: var(--space-3);
+  }
+
+  .service-card__link svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s var(--ease-out-expo);
+  }
+
+  .service-card__link:hover svg {
+    transform: translate(2px, -2px);
+  }
+
+  /* CTA */
+  .services__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .services__cta {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  .services__cta-text {
+    font-size: var(--text-lg);
+    color: var(--color-gray-600);
+  }
+
+  /* Decorative elements */
+  .services__deco {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .services__deco--1 {
+    top: 10%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--color-primary-soft) 0%, transparent 70%);
+  }
+
+  .services__deco--2 {
+    bottom: 10%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--color-secondary-soft) 0%, transparent 70%);
+  }
+</style>
+
+<script>
+  // Animate cards on scroll
+  const cards = document.querySelectorAll('.service-card');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('is-visible');
+        }, index * 100);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  cards.forEach(card => observer.observe(card));
+</script>

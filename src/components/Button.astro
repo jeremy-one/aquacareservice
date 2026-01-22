@@ -1,0 +1,217 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'white';
+  size?: 'sm' | 'md' | 'lg';
+  full?: boolean;
+  icon?: boolean;
+  class?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  ariaLabel?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  full = false,
+  icon = false,
+  class: className = '',
+  type = 'button',
+  disabled = false,
+  ariaLabel,
+  ...rest
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+
+const classes = [
+  'btn',
+  `btn--${variant}`,
+  `btn--${size}`,
+  full && 'btn--full',
+  icon && 'btn--icon',
+  className,
+].filter(Boolean).join(' ');
+---
+
+<Tag
+  href={href}
+  class={classes}
+  type={!href ? type : undefined}
+  disabled={disabled}
+  aria-label={ariaLabel}
+  {...rest}
+>
+  <span class="btn__content">
+    <slot />
+  </span>
+  <span class="btn__shimmer"></span>
+</Tag>
+
+<style is:global>
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    border: 2px solid transparent;
+    border-radius: var(--radius-xl);
+    cursor: pointer;
+    overflow: hidden;
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .btn__content {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .btn__shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+
+  .btn:hover .btn__shimmer {
+    transform: translateX(100%);
+  }
+
+  /* Sizes */
+  .btn--sm {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-xs);
+    border-radius: var(--radius-lg);
+  }
+
+  .btn--lg {
+    padding: var(--space-4) var(--space-8);
+    font-size: var(--text-base);
+    border-radius: var(--radius-xl);
+  }
+
+  .btn--full {
+    width: 100%;
+  }
+
+  .btn--icon {
+    padding: var(--space-3);
+  }
+
+  .btn--icon.btn--sm {
+    padding: var(--space-2);
+  }
+
+  .btn--icon.btn--lg {
+    padding: var(--space-4);
+  }
+
+  /* Primary variant */
+  .btn--primary {
+    background: var(--gradient-primary);
+    color: var(--color-white);
+    box-shadow: var(--shadow-primary);
+  }
+
+  .btn--primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-primary-lg);
+  }
+
+  .btn--primary:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  /* Secondary variant */
+  .btn--secondary {
+    background: var(--color-gray-900);
+    color: var(--color-white);
+  }
+
+  .btn--secondary:hover:not(:disabled) {
+    background: var(--color-gray-800);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  /* Outline variant */
+  .btn--outline {
+    background: transparent;
+    color: var(--color-gray-800);
+    border-color: var(--color-gray-300);
+  }
+
+  .btn--outline:hover:not(:disabled) {
+    background: var(--color-gray-100);
+    border-color: var(--color-gray-400);
+  }
+
+  /* Ghost variant */
+  .btn--ghost {
+    background: transparent;
+    color: var(--color-gray-700);
+  }
+
+  .btn--ghost:hover:not(:disabled) {
+    background: var(--color-gray-100);
+    color: var(--color-gray-900);
+  }
+
+  /* White variant (for dark backgrounds) */
+  .btn--white {
+    background: var(--color-white);
+    color: var(--color-gray-900);
+  }
+
+  .btn--white:hover:not(:disabled) {
+    background: var(--color-gray-100);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  /* Focus state */
+  .btn:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+
+  /* Icon inside button */
+  .btn svg {
+    width: 1.25em;
+    height: 1.25em;
+    flex-shrink: 0;
+  }
+
+  /* Arrow animation for CTA buttons */
+  .btn--with-arrow svg {
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  .btn--with-arrow:hover svg {
+    transform: translateX(4px);
+  }
+</style>

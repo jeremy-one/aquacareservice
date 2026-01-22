@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import Marquee from '../components/sections/Marquee.astro';
+import Services from '../components/sections/Services.astro';
+import About from '../components/sections/About.astro';
+import CTA from '../components/sections/CTA.astro';
+
+const title = 'Aquacare Service | Piscines d\'exception dans le Var (83)';
+const description = 'Aquacare Service, créateurs de piscines d\'exception dans le Var. Construction, entretien et rénovation. Devis gratuit, +15 ans d\'expérience.';
+---
+
+<BaseLayout title={title} description={description}>
+  <Hero />
+  <Marquee />
+  <Services />
+  <About />
+  <CTA />
+</BaseLayout>

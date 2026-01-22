@@ -1,0 +1,237 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  canonical = Astro.url.href,
+  ogImage = '/og-image.jpg'
+} = Astro.props;
+
+const siteUrl = 'https://aquacareservice.fr';
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="theme-color" content="#0a0a0a" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+  <meta property="og:locale" content="fr_FR" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+
+  <!-- Geo -->
+  <meta name="geo.region" content="FR-83" />
+  <meta name="geo.placename" content="Var, France" />
+
+  <!-- Schema.org -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Aquacare Service",
+    "description": description,
+    "url": siteUrl,
+    "areaServed": "Var, France",
+    "serviceType": ["Construction de piscines", "Entretien de piscines", "Rénovation de piscines"]
+  })} />
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+
+<body>
+  <!-- Grain overlay -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <Header />
+
+  <!-- Main content -->
+  <main id="main-content">
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <Footer />
+
+  <!-- Scripts -->
+  <script>
+    import Lenis from 'lenis';
+    import { gsap } from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ═══════════════════════════════════════════
+    // SMOOTH SCROLL - Lenis
+    // ═══════════════════════════════════════════
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      smoothWheel: true,
+    });
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+
+
+    // ═══════════════════════════════════════════
+    // MAGNETIC BUTTONS
+    // ═══════════════════════════════════════════
+    const magneticElements = document.querySelectorAll('[data-magnetic]');
+
+    magneticElements.forEach(el => {
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        el.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+      });
+
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = 'translate(0, 0)';
+      });
+    });
+
+    // ═══════════════════════════════════════════
+    // SCROLL ANIMATIONS
+    // ═══════════════════════════════════════════
+    // Text reveal
+    const revealTexts = document.querySelectorAll('.reveal-text');
+    revealTexts.forEach(el => {
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 85%',
+        onEnter: () => el.classList.add('is-visible'),
+      });
+    });
+
+    // Image reveal
+    const revealImages = document.querySelectorAll('.img-reveal');
+    revealImages.forEach(el => {
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 80%',
+        onEnter: () => el.classList.add('is-visible'),
+      });
+    });
+
+    // Character reveal
+    const charReveals = document.querySelectorAll('.char-reveal');
+    charReveals.forEach(el => {
+      // Split text into characters
+      const text = el.textContent || '';
+      el.innerHTML = text.split('').map((char, i) =>
+        char === ' ' ? ' ' : `<span class="char" style="transition-delay: ${i * 0.03}s">${char}</span>`
+      ).join('');
+
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 85%',
+        onEnter: () => el.classList.add('is-visible'),
+      });
+    });
+
+    // Parallax elements
+    const parallaxElements = document.querySelectorAll('[data-parallax]');
+    parallaxElements.forEach(el => {
+      const speed = parseFloat(el.dataset.parallax) || 0.5;
+
+      gsap.to(el, {
+        yPercent: -30 * speed,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        }
+      });
+    });
+
+    // ═══════════════════════════════════════════
+    // MENU TOGGLE
+    // ═══════════════════════════════════════════
+    const menuBtn = document.querySelector('[data-menu-toggle]');
+    const menu = document.getElementById('menu');
+    const body = document.body;
+
+    if (menuBtn && menu) {
+      menuBtn.addEventListener('click', () => {
+        const isOpen = menu.classList.contains('is-open');
+
+        if (isOpen) {
+          menu.classList.remove('is-open');
+          menuBtn.classList.remove('is-active');
+          body.classList.remove('menu-open');
+          menu.setAttribute('aria-hidden', 'true');
+          lenis.start();
+        } else {
+          menu.classList.add('is-open');
+          menuBtn.classList.add('is-active');
+          body.classList.add('menu-open');
+          menu.setAttribute('aria-hidden', 'false');
+          lenis.stop();
+        }
+      });
+
+      // Close on link click
+      menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          menu.classList.remove('is-open');
+          menuBtn.classList.remove('is-active');
+          body.classList.remove('menu-open');
+          menu.setAttribute('aria-hidden', 'true');
+          lenis.start();
+        });
+      });
+
+      // Close on escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+          menu.classList.remove('is-open');
+          menuBtn.classList.remove('is-active');
+          body.classList.remove('menu-open');
+          menu.setAttribute('aria-hidden', 'true');
+          lenis.start();
+        }
+      });
+    }
+  </script>
+</body>
+</html>

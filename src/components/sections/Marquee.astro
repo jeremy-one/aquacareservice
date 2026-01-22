@@ -1,0 +1,84 @@
+---
+const words = ['Construction', 'Entretien', 'Rénovation', 'Design', 'Excellence', 'Artisanat'];
+---
+
+<section class="marquee-section">
+  <div class="marquee">
+    <div class="marquee__content">
+      {[...words, ...words].map((word) => (
+        <span class="marquee__item">
+          <span class="marquee__text">{word}</span>
+          <span class="marquee__dot"></span>
+        </span>
+      ))}
+    </div>
+    <div class="marquee__content" aria-hidden="true">
+      {[...words, ...words].map((word) => (
+        <span class="marquee__item">
+          <span class="marquee__text">{word}</span>
+          <span class="marquee__dot"></span>
+        </span>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .marquee-section {
+    padding-block: var(--space-8);
+    background: var(--color-white);
+    border-block: 1px solid var(--color-gray-200);
+    overflow: hidden;
+  }
+
+  .marquee {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  .marquee__content {
+    display: flex;
+    flex-shrink: 0;
+    animation: marquee 40s linear infinite;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .marquee:hover .marquee__content {
+    animation-play-state: paused;
+  }
+
+  .marquee__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    padding-inline: var(--space-8);
+  }
+
+  .marquee__text {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-weight: var(--font-bold);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: var(--color-dark);
+    white-space: nowrap;
+    transition: color 0.3s ease;
+  }
+
+  .marquee__item:hover .marquee__text {
+    color: var(--color-primary);
+  }
+
+  .marquee__dot {
+    width: 12px;
+    height: 12px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+</style>

@@ -1,0 +1,11 @@
+# Robots.txt for Aquacare Service
+# https://aquacareservice.fr
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://aquacareservice.fr/sitemap-index.xml
+
+# Disallow admin or private paths (add as needed)
+# Disallow: /admin/
