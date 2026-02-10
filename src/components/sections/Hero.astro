@@ -597,6 +597,7 @@ import doneIcon from '../../assets/icons/done.svg';
     padding-bottom: var(--space-16);
     will-change: transform, filter, opacity;
     transition: filter 0.1s ease-out;
+    backdrop-filter: hue-rotate(24deg);
   }
 
   .hero__inner {
@@ -653,7 +654,7 @@ import doneIcon from '../../assets/icons/done.svg';
   }
 
   .hero__title-line--accent {
-    background: linear-gradient(135deg, #0891b2 0%, #059669 100%);
+    background: linear-gradient(135deg, #0EA5E9 0%, #38BDF8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -932,19 +933,19 @@ import doneIcon from '../../assets/icons/done.svg';
 
   /* Front wave - white */
   .hero__wave-bottom--1 {
-    fill: var(--color-white);
+    fill: #add8f5;
     animation: bottomWave1 7s ease-in-out infinite;
   }
 
   /* Mid wave - light turquoise */
   .hero__wave-bottom--2 {
-    fill: rgba(150, 220, 215, 0.85);
+    fill: rgba(56, 189, 248, 0.85);
     animation: bottomWave2 9s ease-in-out infinite;
   }
 
   /* Back wave - more saturated teal */
   .hero__wave-bottom--3 {
-    fill: rgba(90, 195, 195, 0.65);
+    fill: rgba(14, 165, 233, 0.65);
     animation: bottomWave3 11s ease-in-out infinite;
   }
 
