@@ -5,14 +5,14 @@ const services = [
     title: 'Contrats d\'entretien',
     description: 'Pour profiter d\'une eau claire et d\'un bassin propre, toute la saison.',
     features: ['Particuliers prioritaires', 'Villas', 'Résidences secondaires'],
-    icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
+    icon: 'M12 3C12 3 7 9 7 13a5 5 0 0010 0c0-4-5-10-5-10z',
   },
   {
     number: '02',
     title: 'Rénovation & local technique',
     description: 'Remise à niveau, rénovation du local technique, amélioration du confort et de la fiabilité.',
     features: ['Remise à niveau', 'Local technique', 'Confort & fiabilité'],
-    icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15',
+    icon: 'M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085',
   },
   {
     number: '03',
@@ -20,7 +20,7 @@ const services = [
     description: 'Régulation pH, régulation chlore, électrolyse au sel, chauffage/pompe à chaleur, filtration, solutions connectées.',
     note: 'De plus en plus de systèmes sont connectés et automatisés\u00a0: nous les installons, les paramétrons, puis nous vous expliquons concrètement ce que cela change dans votre quotidien.',
     features: ['Régulation automatique', 'Électrolyse au sel', 'Solutions connectées'],
-    icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z',
+    icon: 'M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z',
   },
 ];
 ---
@@ -90,14 +90,22 @@ const services = [
   <!-- Decorative elements -->
   <div class="services__deco services__deco--1"></div>
   <div class="services__deco services__deco--2"></div>
+
+  <div class="services__wave">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="var(--color-light)"/>
+    </svg>
+    <svg class="services__wave-invert" viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="var(--color-light)"/>
+    </svg>
+  </div>
 </section>
 
 <style>
   .services {
     position: relative;
     padding-block: var(--section-gap);
-    background: var(--color-light);
-    overflow: hidden;
+    background: var(--color-logo-blue);
   }
 
   .services__container {
@@ -168,15 +176,17 @@ const services = [
     flex-direction: column;
     padding: var(--space-8);
     background: var(--color-white);
-    border-radius: var(--radius-2xl);
+    border-radius: var(--radius-xl);
     box-shadow: var(--shadow-md);
-    transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease;
+    border: 1px solid rgba(14, 165, 233, 0.1);
+    transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease, border-color 0.3s ease;
     overflow: hidden;
   }
 
   .service-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
     box-shadow: var(--shadow-xl);
+    border-color: rgba(14, 165, 233, 0.3);
   }
 
   .service-card__bg {
@@ -367,6 +377,25 @@ const services = [
     width: 400px;
     height: 400px;
     background: radial-gradient(circle, var(--color-secondary-soft) 0%, transparent 70%);
+  }
+
+  .services__wave {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    line-height: 0;
+    z-index: 2;
+  }
+
+  .services__wave svg {
+    width: 100%;
+    height: 50px;
+    display: block;
+  }
+
+  .services__wave-invert {
+    transform: rotate(180deg);
   }
 </style>
 

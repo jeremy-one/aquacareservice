@@ -190,18 +190,17 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-1px) scale(0.98);
 }
 
-/* Primary bubble - turquoise glass */
+/* Primary bubble - bleu eau piscine */
 .btn--primary {
   background: linear-gradient(
     135deg,
-    rgba(90, 195, 195, 0.95) 0%,
-    rgba(55, 175, 180, 0.95) 50%,
-    rgba(35, 155, 165, 0.95) 100%
+    rgba(14, 165, 233, 0.95) 0%,
+    rgba(3, 105, 161, 0.95) 100%
   );
   color: var(--color-white);
   box-shadow:
-    0 4px 15px rgba(90, 195, 195, 0.4),
-    0 8px 30px rgba(55, 175, 180, 0.2),
+    0 4px 15px rgba(14, 165, 233, 0.35),
+    0 8px 30px rgba(3, 105, 161, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.3),
     inset 0 -2px 5px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -209,8 +208,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn--primary:hover {
   box-shadow:
-    0 6px 20px rgba(90, 195, 195, 0.5),
-    0 12px 40px rgba(55, 175, 180, 0.3),
+    0 6px 20px rgba(14, 165, 233, 0.45),
+    0 12px 40px rgba(3, 105, 161, 0.25),
     inset 0 1px 0 rgba(255, 255, 255, 0.4),
     inset 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -230,10 +229,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn--outline:hover {
   background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(90, 195, 195, 0.5);
+  border-color: rgba(14, 165, 233, 0.5);
   color: var(--color-primary);
   box-shadow:
-    0 6px 20px rgba(90, 195, 195, 0.15),
+    0 6px 20px rgba(14, 165, 233, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.9),
     inset 0 -1px 3px rgba(0, 0, 0, 0.05);
 }
@@ -302,6 +301,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-primary { color: var(--color-primary); }
 .text-muted { color: var(--color-gray-500); }
+.text-water { color: var(--color-primary); }
 
 .link-underline {
   position: relative;
@@ -338,6 +338,20 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 768px) {
   .hide-mobile { display: none !important; }
+}
+
+/* ─────────────────────────────────────────
+   WAVE SEPARATORS
+   ───────────────────────────────────────── */
+.wave-separator {
+  margin-top: -1px;
+  line-height: 0;
+}
+
+.wave-separator svg {
+  width: 100%;
+  height: 40px;
+  display: block;
 }
 
 /* ─────────────────────────────────────────

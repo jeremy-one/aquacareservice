@@ -120,7 +120,7 @@ const testimonials = [
     position: relative;
     padding-top: 0;
     padding-bottom: var(--section-gap);
-    background: var(--color-white);
+    background: var(--color-light);
     overflow: hidden;
   }
 
@@ -237,9 +237,9 @@ const testimonials = [
     flex-direction: column;
     gap: var(--space-4);
     padding: var(--space-6);
-    background: var(--color-white);
-    border-radius: var(--radius-2xl);
-    border: 1px solid var(--color-gray-200);
+    background: var(--color-logo-navy);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     text-align: left;
     min-width: calc((100% - var(--gap) * (var(--visible) - 1)) / var(--visible));
     max-width: calc((100% - var(--gap) * (var(--visible) - 1)) / var(--visible));
@@ -249,7 +249,7 @@ const testimonials = [
 
   .testimonial-card:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 8px 30px rgba(21, 61, 138, 0.4);
   }
 
   .testimonial-card__stars {
@@ -259,7 +259,7 @@ const testimonials = [
 
   .testimonial-card__text {
     font-size: var(--text-base);
-    color: var(--color-gray-700);
+    color: rgba(255, 255, 255, 0.75);
     line-height: var(--leading-relaxed);
     flex-grow: 1;
   }
@@ -269,7 +269,7 @@ const testimonials = [
     align-items: center;
     gap: var(--space-3);
     padding-top: var(--space-4);
-    border-top: 1px solid var(--color-gray-100);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .testimonial-card__avatar {
@@ -278,8 +278,8 @@ const testimonials = [
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--color-primary-soft);
-    color: var(--color-primary);
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--color-logo-teal);
     font-weight: var(--font-bold);
     font-size: var(--text-base);
     border-radius: 50%;
@@ -290,13 +290,13 @@ const testimonials = [
     display: block;
     font-size: var(--text-sm);
     font-weight: var(--font-semibold);
-    color: var(--color-dark);
+    color: var(--color-white);
   }
 
   .testimonial-card__date {
     display: block;
     font-size: 12px;
-    color: var(--color-gray-500);
+    color: rgba(255, 255, 255, 0.4);
   }
 
   /* Arrows */

@@ -32,7 +32,7 @@
   .cta {
     position: relative;
     padding-block: var(--section-gap);
-    background: linear-gradient(180deg, #e0f2fe 0%, #bae6fd 100%);
+    background: var(--color-logo-teal);
   }
 
   .cta::before {
@@ -40,7 +40,7 @@
     position: absolute;
     inset: 0;
     background: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1920&q=80') center / cover no-repeat;
-    opacity: 0.1;
+    opacity: 0.08;
     filter: saturate(1.8);
     pointer-events: none;
   }
@@ -64,12 +64,12 @@
     font-size: clamp(1.5rem, 4vw, 2.25rem);
     font-weight: var(--font-bold);
     line-height: var(--leading-tight);
-    color: var(--color-dark);
+    color: var(--color-white);
   }
 
   .cta__text {
     font-size: var(--text-lg);
-    color: var(--color-gray-600);
+    color: rgba(255, 255, 255, 0.85);
     line-height: var(--leading-relaxed);
   }
 
@@ -82,7 +82,7 @@
 
   .cta__list li {
     font-size: var(--text-base);
-    color: var(--color-gray-600);
+    color: rgba(255, 255, 255, 0.85);
     padding-left: var(--space-6);
     position: relative;
     line-height: var(--leading-relaxed);
@@ -95,14 +95,14 @@
     top: 10px;
     width: 8px;
     height: 8px;
-    background: var(--color-primary);
+    background: var(--color-white);
     border-radius: 50%;
   }
 
   .cta__response {
     font-size: var(--text-lg);
     font-weight: var(--font-semibold);
-    color: var(--color-dark);
+    color: var(--color-white);
   }
 
   .cta__whatsapp {

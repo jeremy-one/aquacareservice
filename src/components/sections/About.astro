@@ -22,7 +22,7 @@ const reasons = [
   <div class="about__container container">
     <div class="about__header">
       <span class="about__label">Nos engagements</span>
-      <h2 class="about__title">Pourquoi choisir Aquacare pour l'entretien de votre piscine&nbsp;?</h2>
+      <h2 class="about__title">Pourquoi choisir Aquacare pour l'entretien de votre <span class="text-water">piscine</span>&nbsp;?</h2>
     </div>
 
     <!-- Pool + badges scene -->
@@ -89,7 +89,21 @@ const reasons = [
     position: relative;
     padding-top: var(--section-gap);
     padding-bottom: 0;
-    background: var(--color-white);
+    background: var(--color-light);
+  }
+
+  .about::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        110deg,
+        transparent 0%,
+        rgba(14, 165, 233, 0.025) 8%,
+        transparent 16%
+      );
+    pointer-events: none;
   }
 
   .about__container {

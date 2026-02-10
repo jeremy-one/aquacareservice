@@ -21,7 +21,7 @@ const cities = [
 <section class="zone" id="zone">
   <div class="zone__container container">
     <span class="zone__label">Zone d'intervention</span>
-    <h2 class="zone__title">Notre zone d'intervention dans le Var</h2>
+    <h2 class="zone__title">Notre <span class="text-water">zone d'intervention</span> dans le Var</h2>
 
     <div class="zone__cities">
       {cities.map((city) => (
@@ -44,7 +44,27 @@ const cities = [
   .zone {
     position: relative;
     padding-block: var(--section-gap);
-    background: var(--color-light);
+    background: var(--color-dark);
+  }
+
+  .zone::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        100deg,
+        transparent 0%,
+        rgba(14, 165, 233, 0.03) 10%,
+        transparent 20%
+      ),
+      repeating-linear-gradient(
+        80deg,
+        transparent 0%,
+        rgba(14, 165, 233, 0.02) 15%,
+        transparent 30%
+      );
+    pointer-events: none;
   }
 
   .zone__container {
@@ -53,9 +73,10 @@ const cities = [
     align-items: center;
     text-align: center;
     gap: var(--space-6);
-    background: rgb(212 227 250);
+    background: rgba(255, 255, 255, 0.06);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
     padding: 30px;
-    border-radius: 20px;
+    border-radius: var(--radius-xl);
   }
 
   .zone__label {
@@ -63,14 +84,14 @@ const cities = [
     font-weight: var(--font-semibold);
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    color: var(--color-primary);
+    color: var(--color-logo-teal);
   }
 
   .zone__title {
     font-size: clamp(1.5rem, 4vw, 2.5rem);
     font-weight: var(--font-bold);
     line-height: var(--leading-tight);
-    color: var(--color-dark);
+    color: var(--color-white);
     max-width: 700px;
   }
 
@@ -110,10 +131,10 @@ const cities = [
     padding: var(--space-2) var(--space-4);
     font-size: var(--text-sm);
     font-weight: var(--font-medium);
-    color: #0369a1;
+    color: rgba(255, 255, 255, 0.8);
     border: none;
     border-radius: var(--radius-full);
-    background: rgba(14, 165, 233, 0.25);
+    background: rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
     cursor: pointer;
   }
@@ -193,10 +214,10 @@ const cities = [
     ];
 
     L.polygon(polygonCoords, {
-      color: '#0891B2',
+      color: '#0EA5E9',
       weight: 2,
       opacity: 0.6,
-      fillColor: '#0891B2',
+      fillColor: '#0EA5E9',
       fillOpacity: 0.08,
       dashArray: '6, 4',
     }).addTo(map);
@@ -255,7 +276,7 @@ const cities = [
     display: block;
     width: 14px;
     height: 14px;
-    background: #0891B2;
+    background: #0EA5E9;
     border: 2.5px solid white;
     border-radius: 50%;
     box-shadow: 0 2px 6px rgba(8, 145, 178, 0.4);

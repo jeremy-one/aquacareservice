@@ -20,9 +20,14 @@ const faqs = [
 ---
 
 <section class="faq" id="faq">
+  <div class="faq__wave">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+      <path d="M0,50 C360,100 1080,0 1440,50 L1440,100 L0,100 Z"/>
+    </svg>
+  </div>
   <div class="faq__container container">
     <span class="faq__label">FAQ</span>
-    <h2 class="faq__title">Vos questions sur l'entretien et la maintenance des piscines (83)</h2>
+    <h2 class="faq__title">Vos questions sur l'<span class="text-water">entretien</span> et la <span class="text-water">maintenance</span> des piscines (83)</h2>
 
     <div class="faq__list">
       {faqs.map((faq, index) => (
@@ -30,7 +35,7 @@ const faqs = [
           <summary class="faq__question">
             <span>{faq.question}</span>
             <svg class="faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 5v14M5 12h14" stroke-linecap="round" stroke-linejoin="round"/>
+              <path class="faq__icon-drop" d="M12 3C12 3 7 9 7 13a5 5 0 0010 0c0-4-5-10-5-10z" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </summary>
           <div class="faq__answer">
@@ -46,7 +51,27 @@ const faqs = [
   .faq {
     position: relative;
     padding-block: var(--section-gap);
-    background: var(--color-light);
+    background: var(--color-dark);
+  }
+
+  .faq__wave {
+    position: absolute;
+    top: -49px;
+    left: 0;
+    right: 0;
+    height: 50px;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .faq__wave svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .faq__wave path {
+    fill: var(--color-dark);
   }
 
   .faq__container {
@@ -63,14 +88,14 @@ const faqs = [
     font-weight: var(--font-semibold);
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    color: var(--color-primary);
+    color: var(--color-logo-teal);
   }
 
   .faq__title {
     font-size: clamp(1.5rem, 4vw, 2.5rem);
     font-weight: var(--font-bold);
     line-height: var(--leading-tight);
-    color: var(--color-dark);
+    color: var(--color-white);
     text-align: center;
   }
 
@@ -82,23 +107,21 @@ const faqs = [
   }
 
   .faq__item {
-    background: rgba(14, 165, 233, 0.1);
-    border: 1px solid rgba(14, 165, 233, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-xl);
     overflow: hidden;
     transition: all 0.3s ease;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
   }
 
   .faq__item:hover {
-    background: rgba(14, 165, 233, 0.15);
-    border-color: rgba(14, 165, 233, 0.35);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
   }
 
   .faq__item[open] {
-    background: rgba(14, 165, 233, 0.15);
-    border-color: rgba(14, 165, 233, 0.35);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
   }
 
   .faq__question {
@@ -110,7 +133,7 @@ const faqs = [
     cursor: pointer;
     font-size: var(--text-lg);
     font-weight: var(--font-semibold);
-    color: var(--color-dark);
+    color: var(--color-white);
     list-style: none;
   }
 
@@ -119,15 +142,25 @@ const faqs = [
   }
 
   .faq__icon {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     flex-shrink: 0;
     color: var(--color-primary);
     transition: transform 0.3s ease;
   }
 
+  .faq__icon-drop {
+    transition: fill 0.3s ease;
+    fill: transparent;
+  }
+
   .faq__item[open] .faq__icon {
-    transform: rotate(45deg);
+    transform: scale(1.15);
+  }
+
+  .faq__item[open] .faq__icon-drop {
+    fill: var(--color-primary);
+    stroke: var(--color-primary);
   }
 
   .faq__answer {
@@ -136,7 +169,7 @@ const faqs = [
 
   .faq__answer p {
     font-size: var(--text-base);
-    color: var(--color-gray-600);
+    color: rgba(255, 255, 255, 0.65);
     line-height: var(--leading-relaxed);
   }
 </style>
