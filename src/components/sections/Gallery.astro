@@ -1,0 +1,131 @@
+---
+const results = [
+  {
+    title: 'Rattrapage "piscine verte"',
+    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&h=675&fit=crop&q=80',
+    alt: 'Piscine cristalline après rattrapage eau verte',
+  },
+  {
+    title: 'Local technique rénové',
+    image: 'https://images.unsplash.com/photo-1650551182991-b07558247564?w=900&h=675&fit=crop&q=80',
+    alt: 'Local technique piscine rénové et organisé',
+  },
+  {
+    title: 'Installation régulation pH / électrolyse au sel / chauffage',
+    image: 'https://images.unsplash.com/photo-1650551182956-47efa0f90b64?w=900&h=675&fit=crop&q=80',
+    alt: 'Installation équipements régulation et chauffage piscine',
+  },
+];
+---
+
+<section class="gallery" id="realisations">
+  <div class="gallery__container container">
+    <span class="gallery__label">Nos résultats</span>
+    <h2 class="gallery__title">Des résultats visibles après l'intervention d'Aquacare Service</h2>
+
+    <div class="gallery__grid">
+      {results.map((result) => (
+        <div class="gallery__item">
+          <div class="gallery__image-wrapper">
+            <img src={result.image} alt={result.alt} class="gallery__image" loading="lazy" />
+          </div>
+          <p class="gallery__item-title">{result.title}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="gallery__cta">
+      <a href="/contact#devis" class="btn btn--primary">
+        <span>Demander un devis</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .gallery {
+    position: relative;
+    padding-block: var(--section-gap);
+    background: var(--color-white);
+  }
+
+  .gallery__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .gallery__label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-primary);
+  }
+
+  .gallery__title {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-tight);
+    color: var(--color-dark);
+    text-align: center;
+    max-width: 700px;
+  }
+
+  .gallery__grid {
+    display: grid;
+    gap: var(--space-8);
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .gallery__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .gallery__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .gallery__image-wrapper {
+    position: relative;
+    aspect-ratio: 4/3;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    border: 2px dashed var(--color-gray-300);
+    padding: 6px;
+    transition: border-color 0.3s ease;
+  }
+
+  .gallery__item:hover .gallery__image-wrapper {
+    border-color: var(--color-primary);
+  }
+
+  .gallery__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: calc(var(--radius-2xl) - 6px);
+    display: block;
+    transition: transform 0.4s var(--ease-out-expo);
+  }
+
+  .gallery__item:hover .gallery__image {
+    transform: scale(1.05);
+  }
+
+  .gallery__item-title {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    color: var(--color-dark);
+    text-align: center;
+  }
+
+  .gallery__cta {
+    margin-top: var(--space-4);
+  }
+</style>

@@ -1,178 +1,85 @@
 ---
-const stats = [
-  { value: '150+', label: 'Piscines réalisées' },
-  { value: '15', label: 'Années d\'expérience' },
-  { value: '98%', label: 'Clients satisfaits' },
-];
-
-const features = [
+const reasons = [
   {
-    icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z',
-    title: 'Garantie décennale',
-    text: 'Tous nos travaux sont assurés',
+    title: '15 ans d\'expérience',
+    text: 'Dans l\'entretien de piscine et la maintenance.',
+    icon: 'M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z',
   },
   {
-    icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
-    title: 'Certifié Qualibat',
-    text: 'Gage de qualité et de sérieux',
+    title: 'Réponse sous 72h',
+    text: 'Par un membre de l\'équipe Aquacare.',
+    icon: 'M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z',
   },
   {
-    icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
-    title: 'Équipe locale',
-    text: 'Basés dans le Var depuis 2009',
+    title: 'Discrétion & soin',
+    text: 'Le standard haut de gamme attendu dans le Golfe de Saint-Tropez.',
+    icon: 'M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z',
   },
 ];
 ---
 
 <section class="about" id="about">
   <div class="about__container container">
-    <!-- Left column - Pool illustration -->
-    <div class="about__visual">
+    <div class="about__header">
+      <span class="about__label">Nos engagements</span>
+      <h2 class="about__title">Pourquoi choisir Aquacare pour l'entretien de votre piscine&nbsp;?</h2>
+    </div>
+
+    <!-- Pool + badges scene -->
+    <div class="about__scene">
+      <!-- Pool -->
       <div class="about__pool-wrapper">
-        <!-- Dashed border (blueprint style) -->
         <div class="about__pool-border">
           <svg viewBox="0 0 400 300" fill="none" preserveAspectRatio="none">
             <rect x="10" y="10" width="380" height="280" rx="20" stroke="#d1d5db" stroke-width="2" stroke-dasharray="8 6"/>
           </svg>
         </div>
-
-        <!-- Pool shape -->
         <div class="about__pool">
-          <div class="about__pool-water">
-            <!-- Animated wave lines - more lines for realistic water -->
-            <svg class="about__pool-waves" viewBox="0 0 300 180" preserveAspectRatio="none">
-              <path class="about__wave-line about__wave-line--1" d="M-50,20 Q0,15 50,20 T150,20 T250,20 T350,20">
-                <animate attributeName="d" dur="2.8s" repeatCount="indefinite"
-                  values="M-50,20 Q0,15 50,20 T150,20 T250,20 T350,20;
-                          M-50,20 Q0,25 50,20 T150,20 T250,20 T350,20;
-                          M-50,20 Q0,15 50,20 T150,20 T250,20 T350,20" />
-              </path>
-              <path class="about__wave-line about__wave-line--2" d="M-50,38 Q0,33 50,38 T150,38 T250,38 T350,38">
-                <animate attributeName="d" dur="3.2s" repeatCount="indefinite"
-                  values="M-50,38 Q0,33 50,38 T150,38 T250,38 T350,38;
-                          M-50,38 Q0,43 50,38 T150,38 T250,38 T350,38;
-                          M-50,38 Q0,33 50,38 T150,38 T250,38 T350,38" />
-              </path>
-              <path class="about__wave-line about__wave-line--3" d="M-50,56 Q0,51 50,56 T150,56 T250,56 T350,56">
-                <animate attributeName="d" dur="3.5s" repeatCount="indefinite"
-                  values="M-50,56 Q0,51 50,56 T150,56 T250,56 T350,56;
-                          M-50,56 Q0,61 50,56 T150,56 T250,56 T350,56;
-                          M-50,56 Q0,51 50,56 T150,56 T250,56 T350,56" />
-              </path>
-              <path class="about__wave-line about__wave-line--4" d="M-50,74 Q0,69 50,74 T150,74 T250,74 T350,74">
-                <animate attributeName="d" dur="3.8s" repeatCount="indefinite"
-                  values="M-50,74 Q0,69 50,74 T150,74 T250,74 T350,74;
-                          M-50,74 Q0,79 50,74 T150,74 T250,74 T350,74;
-                          M-50,74 Q0,69 50,74 T150,74 T250,74 T350,74" />
-              </path>
-              <path class="about__wave-line about__wave-line--5" d="M-50,92 Q0,87 50,92 T150,92 T250,92 T350,92">
-                <animate attributeName="d" dur="4s" repeatCount="indefinite"
-                  values="M-50,92 Q0,87 50,92 T150,92 T250,92 T350,92;
-                          M-50,92 Q0,97 50,92 T150,92 T250,92 T350,92;
-                          M-50,92 Q0,87 50,92 T150,92 T250,92 T350,92" />
-              </path>
-              <path class="about__wave-line about__wave-line--6" d="M-50,110 Q0,105 50,110 T150,110 T250,110 T350,110">
-                <animate attributeName="d" dur="4.3s" repeatCount="indefinite"
-                  values="M-50,110 Q0,105 50,110 T150,110 T250,110 T350,110;
-                          M-50,110 Q0,115 50,110 T150,110 T250,110 T350,110;
-                          M-50,110 Q0,105 50,110 T150,110 T250,110 T350,110" />
-              </path>
-              <path class="about__wave-line about__wave-line--7" d="M-50,128 Q0,123 50,128 T150,128 T250,128 T350,128">
-                <animate attributeName="d" dur="4.6s" repeatCount="indefinite"
-                  values="M-50,128 Q0,123 50,128 T150,128 T250,128 T350,128;
-                          M-50,128 Q0,133 50,128 T150,128 T250,128 T350,128;
-                          M-50,128 Q0,123 50,128 T150,128 T250,128 T350,128" />
-              </path>
-              <path class="about__wave-line about__wave-line--8" d="M-50,146 Q0,141 50,146 T150,146 T250,146 T350,146">
-                <animate attributeName="d" dur="4.9s" repeatCount="indefinite"
-                  values="M-50,146 Q0,141 50,146 T150,146 T250,146 T350,146;
-                          M-50,146 Q0,151 50,146 T150,146 T250,146 T350,146;
-                          M-50,146 Q0,141 50,146 T150,146 T250,146 T350,146" />
-              </path>
-              <path class="about__wave-line about__wave-line--9" d="M-50,164 Q0,159 50,164 T150,164 T250,164 T350,164">
-                <animate attributeName="d" dur="5.2s" repeatCount="indefinite"
-                  values="M-50,164 Q0,159 50,164 T150,164 T250,164 T350,164;
-                          M-50,164 Q0,169 50,164 T150,164 T250,164 T350,164;
-                          M-50,164 Q0,159 50,164 T150,164 T250,164 T350,164" />
-              </path>
-            </svg>
-          </div>
+          <svg class="about__pool-waves" viewBox="0 0 300 180" preserveAspectRatio="none">
+            <path class="about__wave about__wave--1" d="M-50,20 Q0,15 50,20 T150,20 T250,20 T350,20"><animate attributeName="d" dur="2.8s" repeatCount="indefinite" values="M-50,20 Q0,15 50,20 T150,20 T250,20 T350,20;M-50,20 Q0,25 50,20 T150,20 T250,20 T350,20;M-50,20 Q0,15 50,20 T150,20 T250,20 T350,20" /></path>
+            <path class="about__wave about__wave--2" d="M-50,40 Q0,35 50,40 T150,40 T250,40 T350,40"><animate attributeName="d" dur="3.2s" repeatCount="indefinite" values="M-50,40 Q0,35 50,40 T150,40 T250,40 T350,40;M-50,40 Q0,45 50,40 T150,40 T250,40 T350,40;M-50,40 Q0,35 50,40 T150,40 T250,40 T350,40" /></path>
+            <path class="about__wave about__wave--3" d="M-50,60 Q0,55 50,60 T150,60 T250,60 T350,60"><animate attributeName="d" dur="3.6s" repeatCount="indefinite" values="M-50,60 Q0,55 50,60 T150,60 T250,60 T350,60;M-50,60 Q0,65 50,60 T150,60 T250,60 T350,60;M-50,60 Q0,55 50,60 T150,60 T250,60 T350,60" /></path>
+            <path class="about__wave about__wave--4" d="M-50,80 Q0,75 50,80 T150,80 T250,80 T350,80"><animate attributeName="d" dur="3.9s" repeatCount="indefinite" values="M-50,80 Q0,75 50,80 T150,80 T250,80 T350,80;M-50,80 Q0,85 50,80 T150,80 T250,80 T350,80;M-50,80 Q0,75 50,80 T150,80 T250,80 T350,80" /></path>
+            <path class="about__wave about__wave--5" d="M-50,100 Q0,95 50,100 T150,100 T250,100 T350,100"><animate attributeName="d" dur="4.2s" repeatCount="indefinite" values="M-50,100 Q0,95 50,100 T150,100 T250,100 T350,100;M-50,100 Q0,105 50,100 T150,100 T250,100 T350,100;M-50,100 Q0,95 50,100 T150,100 T250,100 T350,100" /></path>
+            <path class="about__wave about__wave--6" d="M-50,120 Q0,115 50,120 T150,120 T250,120 T350,120"><animate attributeName="d" dur="4.5s" repeatCount="indefinite" values="M-50,120 Q0,115 50,120 T150,120 T250,120 T350,120;M-50,120 Q0,125 50,120 T150,120 T250,120 T350,120;M-50,120 Q0,115 50,120 T150,120 T250,120 T350,120" /></path>
+            <path class="about__wave about__wave--7" d="M-50,140 Q0,135 50,140 T150,140 T250,140 T350,140"><animate attributeName="d" dur="4.8s" repeatCount="indefinite" values="M-50,140 Q0,135 50,140 T150,140 T250,140 T350,140;M-50,140 Q0,145 50,140 T150,140 T250,140 T350,140;M-50,140 Q0,135 50,140 T150,140 T250,140 T350,140" /></path>
+            <path class="about__wave about__wave--8" d="M-50,160 Q0,155 50,160 T150,160 T250,160 T350,160"><animate attributeName="d" dur="5.1s" repeatCount="indefinite" values="M-50,160 Q0,155 50,160 T150,160 T250,160 T350,160;M-50,160 Q0,165 50,160 T150,160 T250,160 T350,160;M-50,160 Q0,155 50,160 T150,160 T250,160 T350,160" /></path>
+          </svg>
         </div>
-
-        <!-- Caption -->
-        <p class="about__pool-caption">Votre future piscine</p>
       </div>
 
-      <!-- Floating service badges -->
-      <div class="about__service-badge about__service-badge--construction">
-        <span class="about__service-icon">🏗️</span>
-        <span class="about__service-label">Construction</span>
-      </div>
-
-      <div class="about__service-badge about__service-badge--renovation">
-        <span class="about__service-icon">✨</span>
-        <span class="about__service-label">Rénovation</span>
-      </div>
-
-      <div class="about__service-badge about__service-badge--entretien">
-        <span class="about__service-icon">🔧</span>
-        <span class="about__service-label">Entretien</span>
-      </div>
-    </div>
-
-    <!-- Right column - Content -->
-    <div class="about__content">
-      <span class="about__label">À propos</span>
-
-      <h2 class="about__title">
-        <span class="about__title-line">L'excellence au service</span>
-        <span class="about__title-line about__title-line--gradient">de votre bien-être</span>
-      </h2>
-
-      <div class="about__text">
-        <p>
-          Depuis plus de 15 ans, <strong>Aquacare Service</strong> accompagne les habitants du Var
-          dans la réalisation de leurs projets piscine. Notre équipe passionnée
-          met son expertise au service de votre satisfaction.
-        </p>
-        <p>
-          De la conception à l'entretien, nous vous garantissons un suivi
-          personnalisé et un travail de qualité, réalisé dans les règles de l'art.
-        </p>
-      </div>
-
-      <!-- Features -->
-      <div class="about__features">
-        {features.map((feature) => (
-          <div class="about__feature">
-            <span class="about__feature-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d={feature.icon} stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <div class="about__feature-content">
-              <span class="about__feature-title">{feature.title}</span>
-              <span class="about__feature-text">{feature.text}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <a href="/a-propos" class="about__link btn btn--outline" data-magnetic>
-        <span>Découvrir notre histoire</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- Stats bar -->
-  <div class="about__stats-bar">
-    <div class="about__stats-container container">
-      {stats.map((stat, index) => (
-        <div class="about__stat" style={`--delay: ${index * 0.15}s`}>
-          <span class="about__stat-value">{stat.value}</span>
-          <span class="about__stat-label">{stat.label}</span>
+      <!-- Badge gauche : 15 ans d'expérience -->
+      <div class="about__badge about__badge--left" style="--delay: 0s">
+        <span class="about__badge-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path d={reasons[0].icon} stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <div class="about__badge-content">
+          <span class="about__badge-title">{reasons[0].title}</span>
+          <span class="about__badge-text">{reasons[0].text}</span>
         </div>
-      ))}
+      </div>
+
+      <!-- Badge haut : Réponse sous 72h -->
+      <div class="about__badge about__badge--top" style="--delay: 0.8s">
+        <span class="about__badge-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path d={reasons[1].icon} stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <div class="about__badge-content">
+          <span class="about__badge-title">{reasons[1].title}</span>
+          <span class="about__badge-text">{reasons[1].text}</span>
+        </div>
+      </div>
+
+      <!-- Badge droite : Discrétion & soin -->
+      <div class="about__badge about__badge--right" style="--delay: 1.6s">
+        <span class="about__badge-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path d={reasons[2].icon} stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <div class="about__badge-content">
+          <span class="about__badge-title">{reasons[2].title}</span>
+          <span class="about__badge-text">{reasons[2].text}</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -181,38 +88,58 @@ const features = [
   .about {
     position: relative;
     padding-top: var(--section-gap);
+    padding-bottom: 0;
     background: var(--color-white);
   }
 
   .about__container {
-    display: grid;
-    gap: var(--space-16);
-  }
-
-  @media (min-width: 1024px) {
-    .about__container {
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-24);
-      align-items: center;
-    }
-  }
-
-  /* Visual - Pool illustration */
-  .about__visual {
-    position: relative;
     display: flex;
-    justify-content: center;
-    padding: var(--space-12);
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-10);
+  }
+
+  .about__header {
+    text-align: center;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .about__label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-primary);
+  }
+
+  .about__title {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-tight);
+    color: var(--color-dark);
+  }
+
+  /* Scene: pool + badges */
+  .about__scene {
+    position: relative;
+    width: 100%;
+    max-width: 920px;
+    height: 380px;
+    margin-inline: auto;
   }
 
   .about__pool-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 420px;
-    aspect-ratio: 4/3;
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 340px;
+    height: 255px;
   }
 
-  /* Dashed border (blueprint style) */
   .about__pool-border {
     position: absolute;
     inset: 0;
@@ -224,7 +151,6 @@ const features = [
     height: 100%;
   }
 
-  /* Pool shape */
   .about__pool {
     position: absolute;
     top: 15%;
@@ -243,12 +169,6 @@ const features = [
       0 10px 40px rgba(90, 195, 195, 0.3);
   }
 
-  .about__pool-water {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-  }
-
   .about__pool-waves {
     position: absolute;
     inset: 0;
@@ -256,295 +176,139 @@ const features = [
     height: 100%;
   }
 
-  .about__wave-line {
+  .about__wave {
     fill: none;
-    stroke: rgba(255, 255, 255, 0.35);
     stroke-width: 1.5;
     stroke-linecap: round;
   }
 
-  .about__wave-line--2 {
-    stroke: rgba(255, 255, 255, 0.32);
-  }
+  .about__wave--1 { stroke: rgba(255, 255, 255, 0.35); }
+  .about__wave--2 { stroke: rgba(255, 255, 255, 0.32); }
+  .about__wave--3 { stroke: rgba(255, 255, 255, 0.29); }
+  .about__wave--4 { stroke: rgba(255, 255, 255, 0.26); }
+  .about__wave--5 { stroke: rgba(255, 255, 255, 0.23); }
+  .about__wave--6 { stroke: rgba(255, 255, 255, 0.20); }
+  .about__wave--7 { stroke: rgba(255, 255, 255, 0.17); }
+  .about__wave--8 { stroke: rgba(255, 255, 255, 0.14); }
 
-  .about__wave-line--3 {
-    stroke: rgba(255, 255, 255, 0.29);
-  }
-
-  .about__wave-line--4 {
-    stroke: rgba(255, 255, 255, 0.26);
-  }
-
-  .about__wave-line--5 {
-    stroke: rgba(255, 255, 255, 0.23);
-  }
-
-  .about__wave-line--6 {
-    stroke: rgba(255, 255, 255, 0.20);
-  }
-
-  .about__wave-line--7 {
-    stroke: rgba(255, 255, 255, 0.17);
-  }
-
-  .about__wave-line--8 {
-    stroke: rgba(255, 255, 255, 0.14);
-  }
-
-  .about__wave-line--9 {
-    stroke: rgba(255, 255, 255, 0.11);
-  }
-
-  /* Pool caption */
-  .about__pool-caption {
+  /* Badges around pool */
+  .about__badge {
     position: absolute;
-    bottom: 5%;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    background: var(--color-white);
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    width: 240px;
+    animation: floatBadge 4s ease-in-out infinite;
+    animation-delay: var(--delay);
+    z-index: 2;
+  }
+
+  .about__badge--left {
+    left: 0;
+    top: 55%;
+    transform: translateY(-50%);
+  }
+
+  .about__badge--top {
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
-    font-size: var(--text-sm);
-    color: var(--color-gray-500);
-    white-space: nowrap;
   }
 
-  /* Floating service badges */
-  .about__service-badge {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    background: var(--color-white);
-    padding: var(--space-3) var(--space-4);
-    border-radius: var(--radius-full);
-    box-shadow: var(--shadow-lg);
-    font-weight: var(--font-semibold);
-    font-size: var(--text-sm);
-    color: var(--color-dark);
-    animation: floatBadge 4s ease-in-out infinite;
-  }
-
-  .about__service-icon {
-    font-size: 1.1em;
-  }
-
-  .about__service-badge--construction {
-    top: 5%;
+  .about__badge--right {
     right: 0;
-    animation-delay: 0s;
+    top: 55%;
+    transform: translateY(-50%);
   }
 
-  .about__service-badge--renovation {
-    top: 45%;
-    right: -5%;
-    animation-delay: 1s;
+  /* Float animations preserving base transforms */
+  .about__badge--left {
+    animation-name: floatBadgeLeft;
+  }
+  .about__badge--top {
+    animation-name: floatBadgeTop;
+  }
+  .about__badge--right {
+    animation-name: floatBadgeRight;
   }
 
-  .about__service-badge--entretien {
-    bottom: 20%;
-    left: 0;
-    animation-delay: 2s;
+  @keyframes floatBadgeLeft {
+    0%, 100% { transform: translateY(-50%); }
+    50% { transform: translateY(calc(-50% - 6px)); }
+  }
+  @keyframes floatBadgeTop {
+    0%, 100% { transform: translateX(-50%); }
+    50% { transform: translate(-50%, -6px); }
+  }
+  @keyframes floatBadgeRight {
+    0%, 100% { transform: translateY(-50%); }
+    50% { transform: translateY(calc(-50% - 6px)); }
   }
 
-  @keyframes floatBadge {
-    0%, 100% {
-      transform: translateY(0);
+  /* Mobile: stack vertically */
+  @media (max-width: 899px) {
+    .about__scene {
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-5);
     }
-    50% {
-      transform: translateY(-8px);
-    }
-  }
 
-  @media (min-width: 1024px) {
-    .about__service-badge--construction {
-      right: -10%;
-    }
-
-    .about__service-badge--renovation {
-      right: -15%;
+    .about__pool-wrapper {
+      position: relative;
+      top: auto;
+      left: auto;
+      transform: none;
+      width: 300px;
+      height: 225px;
     }
 
-    .about__service-badge--entretien {
-      left: -5%;
-    }
-  }
-
-  /* Content */
-  .about__content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
-  }
-
-  .about__label {
-    font-size: var(--text-sm);
-    font-weight: var(--font-semibold);
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--color-primary);
-  }
-
-  .about__title {
-    font-size: clamp(1.75rem, 4vw, 2.75rem);
-    font-weight: var(--font-bold);
-    line-height: var(--leading-tight);
-    color: var(--color-dark);
-  }
-
-  .about__title-line {
-    display: inline;
-  }
-
-  .about__title-line--gradient {
-    background: var(--gradient-ocean);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  @media (min-width: 768px) {
-    .about__title {
-      font-size: clamp(2rem, 3.5vw, 3rem);
+    .about__badge {
+      position: relative;
+      top: auto;
+      left: auto;
+      right: auto;
+      bottom: auto;
+      transform: none;
+      width: 100%;
+      max-width: 340px;
+      animation: none;
     }
   }
 
-  .about__text {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-  }
-
-  .about__text p {
-    font-size: var(--text-lg);
-    line-height: var(--leading-relaxed);
-    color: var(--color-gray-600);
-  }
-
-  .about__text strong {
-    color: var(--color-dark);
-    font-weight: var(--font-semibold);
-  }
-
-  /* Features */
-  .about__features {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
-    padding-block: var(--space-4);
-  }
-
-  @media (min-width: 640px) {
-    .about__features {
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--space-6);
-    }
-  }
-
-  .about__feature {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: var(--space-3);
-  }
-
-  .about__feature-icon {
-    position: relative;
-    width: 52px;
-    height: 52px;
+  .about__badge-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #E0F4F3;
-    border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
+    background: var(--color-primary-soft);
     color: var(--color-primary);
+    border-radius: var(--radius-lg);
     flex-shrink: 0;
-    margin-top: 40px;
   }
 
-  /* Triangle pointe de la goutte */
-  .about__feature-icon::before {
-    content: '';
-    position: absolute;
-    top: -39px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 26px solid transparent;
-    border-right: 28px solid transparent;
-    border-bottom: 50px solid #E0F4F3;
-  }
-
-  /* Reflet brillant sur la goutte */
-  .about__feature-icon::after {
-    content: '';
-    position: absolute;
-    top: 8px;
-    left: 10px;
-    width: 8px;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-  }
-
-  .about__feature-icon svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  .about__feature-content {
+  .about__badge-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: var(--space-1);
+    gap: 2px;
   }
 
-  .about__feature-title {
-    font-weight: var(--font-semibold);
-    color: var(--color-dark);
+  .about__badge-title {
     font-size: var(--text-sm);
-  }
-
-  .about__feature-text {
-    font-size: var(--text-xs);
-    color: var(--color-gray-500);
-  }
-
-  .about__link {
-    align-self: flex-start;
-    margin-top: var(--space-4);
-  }
-
-  /* Stats bar */
-  .about__stats-bar {
-    margin-top: var(--section-gap);
-    padding-block: var(--space-16);
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-dark-soft) 100%);
-  }
-
-  .about__stats-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-8);
-  }
-
-  .about__stat {
-    text-align: center;
-  }
-
-  .about__stat-value {
-    display: block;
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 5vw, 4rem);
     font-weight: var(--font-bold);
-    color: var(--color-white);
-    line-height: 1;
-    margin-bottom: var(--space-2);
+    color: var(--color-dark);
   }
 
-  .about__stat-label {
-    font-size: var(--text-sm);
-    color: rgba(255, 255, 255, 0.7);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+  .about__badge-text {
+    font-size: 13px;
+    color: var(--color-gray-600);
+    line-height: var(--leading-relaxed);
   }
 </style>

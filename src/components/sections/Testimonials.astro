@@ -1,304 +1,424 @@
 ---
 const testimonials = [
   {
-    id: 1,
-    content: "Équipe très professionnelle et à l'écoute. Notre piscine est exactement comme nous l'avions imaginée. Le suivi du chantier était impeccable.",
-    author: 'Marie L.',
-    location: 'Saint-Tropez',
+    name: 'Alexis Deborde',
     rating: 5,
+    text: 'Florent a installé les équipements de notre piscine (système pompe, contrôle pH, et système d\'électrolyse). Très professionnel et réactif.',
+    date: 'Novembre 2025',
   },
   {
-    id: 2,
-    content: "Service d'entretien au top ! Depuis 3 ans, notre piscine est toujours impeccable. Réactifs et de bons conseils. Je recommande vivement.",
-    author: 'Pierre D.',
-    location: 'Toulon',
+    name: 'Jérôme Jammes',
     rating: 5,
+    text: 'Cabinet de kinébalnéothérapie à Ste Maxime en contrat d\'entretien avec Florent et sa société Aquacare. Très professionnel et réactif. À recommander.',
+    date: 'Janvier 2026',
   },
   {
-    id: 3,
-    content: "Rénovation complète de notre piscine réalisée dans les délais. Travail soigné, équipe sympathique. Le résultat dépasse nos attentes.",
-    author: 'Sophie M.',
-    location: 'Hyères',
+    name: 'Chloé Arnaud',
     rating: 5,
+    text: 'Je recommande fortement Florent et Aquacare Service. Professionnels, réactifs, travail soigné et rapide. N\'hésitez pas, c\'est une valeur sûre.',
+    date: 'Juillet 2025',
+  },
+  {
+    name: 'Violaine Vigorelli',
+    rating: 5,
+    text: 'Florent est intervenu très rapidement avec beaucoup d\'efficacité et de sérieux lorsque le moteur de piscine a grillé cet été, merci encore\u00a0!',
+    date: 'Janvier 2026',
+  },
+  {
+    name: 'Cyril Marin Le Quellec',
+    rating: 5,
+    text: 'Excellent travail. Une piscine toujours impeccable.',
+    date: 'Janvier 2026',
+  },
+  {
+    name: 'Adrien Grege',
+    rating: 5,
+    text: 'Professionnel agréable, à l\'écoute et très réactif. Je recommande\u00a0!',
+    date: 'Janvier 2026',
+  },
+  {
+    name: 'Sylvain Fay',
+    rating: 5,
+    text: 'Professionnels, réactif, je recommande\u00a0! Merci.',
+    date: 'Janvier 2026',
+  },
+  {
+    name: 'Claude Richerme',
+    rating: 5,
+    text: 'Entretien nickel\u00a0! C\'est parfait\u00a0!',
+    date: 'Janvier 2026',
+  },
+  {
+    name: 'Marie Christine Sargeant',
+    rating: 5,
+    text: 'We highly recommend Aquacare Service which have looked after our swimming pool since 2017\u00a0!',
+    date: 'Janvier 2026',
   },
 ];
 ---
 
-<section class="testimonials section">
-  <div class="container">
-    <!-- Section header -->
-    <div class="testimonials__header">
-      <span class="testimonials__label" data-animate="fade-up">Témoignages</span>
-      <h2 class="testimonials__title" data-animate="fade-up" data-delay="100">
-        Ce que nos clients
-        <span class="text-gradient">disent de nous</span>
-      </h2>
-      <p class="testimonials__subtitle" data-animate="fade-up" data-delay="200">
-        La satisfaction de nos clients est notre plus belle récompense.
-        Découvrez leurs retours d'expérience.
-      </p>
+<section class="testimonials" id="avis">
+  <div class="testimonials__container container">
+    <div class="testimonials__badge">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+        <path d="M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2z" fill="#FBBC04"/>
+      </svg>
+      <span class="testimonials__badge-score">5,0</span>
+      <span class="testimonials__badge-source">sur Google ({testimonials.length} avis)</span>
     </div>
 
-    <!-- Testimonials grid -->
-    <div class="testimonials__grid">
-      {testimonials.map((testimonial, index) => (
-        <article class="testimonial-card hover-lift" data-animate="fade-up" data-delay={`${(index + 1) * 150}`}>
-          <!-- Quote icon -->
-          <div class="testimonial-card__quote" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/>
-            </svg>
-          </div>
-
-          <!-- Rating -->
-          <div class="testimonial-card__rating" aria-label={`Note: ${testimonial.rating} sur 5`}>
-            {[...Array(5)].map((_, i) => (
-              <svg viewBox="0 0 20 20" fill={i < testimonial.rating ? 'currentColor' : 'none'} stroke="currentColor" aria-hidden="true">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-              </svg>
-            ))}
-          </div>
-
-          <!-- Content -->
-          <blockquote class="testimonial-card__content">
-            <p>"{testimonial.content}"</p>
-          </blockquote>
-
-          <!-- Author -->
-          <div class="testimonial-card__author">
-            <div class="testimonial-card__avatar">
-              <span>{testimonial.author.charAt(0)}</span>
+    <div class="testimonials__carousel">
+      <div class="testimonials__track">
+        {testimonials.map((t) => (
+          <article class="testimonial-card">
+            <div class="testimonial-card__stars">
+              {Array.from({ length: t.rating }).map(() => (
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                  <path d="M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2z" fill="#FBBC04"/>
+                </svg>
+              ))}
             </div>
-            <div class="testimonial-card__info">
-              <cite class="testimonial-card__name">{testimonial.author}</cite>
-              <span class="testimonial-card__location">{testimonial.location}</span>
+            <blockquote class="testimonial-card__text">{t.text}</blockquote>
+            <div class="testimonial-card__footer">
+              <span class="testimonial-card__avatar">{t.name.charAt(0)}</span>
+              <div>
+                <span class="testimonial-card__name">{t.name}</span>
+                <span class="testimonial-card__date">{t.date}</span>
+              </div>
             </div>
-          </div>
-        </article>
+          </article>
+        ))}
+      </div>
+
+      <button class="testimonials__arrow testimonials__arrow--prev" type="button" aria-label="Avis précédent">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+          <path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="testimonials__arrow testimonials__arrow--next" type="button" aria-label="Avis suivant">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+          <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="testimonials__dots">
+      {testimonials.map((_, i) => (
+        <button class:list={['testimonials__dot', { 'is-active': i === 0 }]} type="button" aria-label={`Aller à l'avis ${i + 1}`} />
       ))}
     </div>
 
-    <!-- Trust badges -->
-    <div class="testimonials__trust" data-animate="fade-up" data-delay="400">
-      <div class="trust-badge">
-        <div class="trust-badge__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            <path d="M9 12l2 2 4-4"/>
-          </svg>
-        </div>
-        <div class="trust-badge__content">
-          <span class="trust-badge__title">Garantie décennale</span>
-          <span class="trust-badge__text">Tous nos travaux sont assurés</span>
-        </div>
-      </div>
-      <div class="trust-badge">
-        <div class="trust-badge__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="8" r="7"/>
-            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
-          </svg>
-        </div>
-        <div class="trust-badge__content">
-          <span class="trust-badge__title">Certifié RGE</span>
-          <span class="trust-badge__text">Qualité reconnue</span>
-        </div>
-      </div>
-      <div class="trust-badge">
-        <div class="trust-badge__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-        </div>
-        <div class="trust-badge__content">
-          <span class="trust-badge__title">+500 clients</span>
-          <span class="trust-badge__text">Nous font confiance</span>
-        </div>
-      </div>
-    </div>
+    <p class="testimonials__ask">Si nous intervenons déjà chez vous, un retour d'expérience nous aide énormément.</p>
+    <a href="https://www.google.com/search?newwindow=1&sca_esv=9687c9b822386596&rlz=1C1CHBF_frFR981FR981&hl=fr&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOTMFrtxdos8IiqejSNh1WmPfnW1Jx5FTc3OroTyMZcBw9dpBIg2zhR7u1s-zWCSJ-qiybzB0lwxX2vl7fuB0b5jIAGOjRq6QWkzT1zNy_QOr-L3hVxDjav5Elmc-eHpLOHDyBZ2-FMrgaMP4mZMuRAs6iLe8kAWnu84DV8e3gZvDdfEanA%3D%3D&q=Aquacare+Service+-+entretien+piscine+haut+de+gamme+Golfe+de+Saint-Tropez+Avis&sa=X&ved=2ahUKEwjXld_LsM-SAxUVVaQEHZxnHBEQ0bkNegQIJRAD&biw=753&bih=944&dpr=1&sei=m2GLaa25HdCukdUP0dzxkAE" target="_blank" rel="noopener noreferrer" class="testimonials__add-review">
+      + Ajouter un avis
+    </a>
   </div>
 </section>
 
 <style>
   .testimonials {
+    position: relative;
+    padding-top: 0;
+    padding-bottom: var(--section-gap);
     background: var(--color-white);
+    overflow: hidden;
   }
 
-  /* Header */
-  .testimonials__header {
+  .testimonials__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    max-width: 600px;
-    margin-inline: auto;
-    margin-bottom: var(--space-12);
+    gap: var(--space-6);
+  }
+
+  .testimonials__container::before {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: var(--color-gray-200);
+    margin-bottom: var(--space-2);
   }
 
   .testimonials__label {
-    display: inline-block;
     font-size: var(--text-sm);
     font-weight: var(--font-semibold);
-    color: var(--color-primary-600);
     text-transform: uppercase;
-    letter-spacing: var(--tracking-wider);
-    margin-bottom: var(--space-4);
+    letter-spacing: 0.2em;
+    color: var(--color-primary);
   }
 
   .testimonials__title {
-    font-size: var(--text-4xl);
-    color: var(--color-gray-900);
-    margin-bottom: var(--space-4);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-tight);
+    color: var(--color-dark);
   }
 
-  .testimonials__subtitle {
+  .testimonials__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-full);
+  }
+
+  .testimonials__badge-score {
     font-size: var(--text-lg);
+    font-weight: var(--font-bold);
+    color: var(--color-dark);
+  }
+
+  .testimonials__badge-source {
+    font-size: var(--text-sm);
     color: var(--color-gray-600);
+  }
+
+  .testimonials__ask {
+    font-size: var(--text-sm);
+    color: var(--color-gray-500);
+    max-width: 400px;
     line-height: var(--leading-relaxed);
   }
 
-  /* Grid */
-  .testimonials__grid {
-    display: grid;
-    gap: var(--space-6);
-    margin-bottom: var(--space-16);
+  .testimonials__add-review {
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .testimonials__add-review:hover {
+    opacity: 0.7;
+  }
+
+  /* Carousel */
+  .testimonials__carousel {
+    --gap: 24px;
+    --visible: 1;
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin-top: var(--space-4);
   }
 
   @media (min-width: 768px) {
-    .testimonials__grid {
-      grid-template-columns: repeat(2, 1fr);
+    .testimonials__carousel {
+      --visible: 2;
     }
   }
 
   @media (min-width: 1024px) {
-    .testimonials__grid {
-      grid-template-columns: repeat(3, 1fr);
+    .testimonials__carousel {
+      --visible: 3;
     }
   }
 
-  /* Testimonial card */
+  .testimonials__track {
+    display: flex;
+    gap: var(--gap);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 8px 4px;
+  }
+
+  .testimonials__track::-webkit-scrollbar {
+    display: none;
+  }
+
   .testimonial-card {
-    position: relative;
-    padding: var(--space-8);
-    background: var(--color-gray-50);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-6);
+    background: var(--color-white);
     border-radius: var(--radius-2xl);
-    border: 1px solid var(--color-gray-100);
+    border: 1px solid var(--color-gray-200);
+    text-align: left;
+    min-width: calc((100% - var(--gap) * (var(--visible) - 1)) / var(--visible));
+    max-width: calc((100% - var(--gap) * (var(--visible) - 1)) / var(--visible));
+    scroll-snap-align: start;
+    transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s ease;
   }
 
-  .testimonial-card__quote {
-    position: absolute;
-    top: var(--space-6);
-    right: var(--space-6);
-    color: var(--color-primary-200);
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
   }
 
-  .testimonial-card__quote svg {
-    width: 32px;
-    height: 32px;
-  }
-
-  .testimonial-card__rating {
+  .testimonial-card__stars {
     display: flex;
     gap: 2px;
-    margin-bottom: var(--space-4);
-    color: var(--color-accent-400);
   }
 
-  .testimonial-card__rating svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  .testimonial-card__content {
-    margin-bottom: var(--space-6);
-  }
-
-  .testimonial-card__content p {
+  .testimonial-card__text {
     font-size: var(--text-base);
     color: var(--color-gray-700);
     line-height: var(--leading-relaxed);
-    font-style: italic;
+    flex-grow: 1;
   }
 
-  .testimonial-card__author {
+  .testimonial-card__footer {
     display: flex;
     align-items: center;
     gap: var(--space-3);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-gray-100);
   }
 
   .testimonial-card__avatar {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    font-weight: var(--font-bold);
+    font-size: var(--text-base);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .testimonial-card__name {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--color-dark);
+  }
+
+  .testimonial-card__date {
+    display: block;
+    font-size: 12px;
+    color: var(--color-gray-500);
+  }
+
+  /* Arrows */
+  .testimonials__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     width: 44px;
     height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--gradient-primary);
-    border-radius: var(--radius-full);
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: 50%;
+    color: var(--color-dark);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    z-index: 2;
+  }
+
+  .testimonials__arrow:hover {
+    background: var(--color-primary);
     color: var(--color-white);
-    font-weight: var(--font-bold);
-    font-size: var(--text-lg);
+    border-color: var(--color-primary);
   }
 
-  .testimonial-card__info {
+  .testimonials__arrow:disabled {
+    opacity: 0.3;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .testimonials__arrow--prev {
+    left: -8px;
+  }
+
+  .testimonials__arrow--next {
+    right: -8px;
+  }
+
+  @media (max-width: 767px) {
+    .testimonials__arrow {
+      display: none;
+    }
+  }
+
+  /* Dots */
+  .testimonials__dots {
     display: flex;
-    flex-direction: column;
-  }
-
-  .testimonial-card__name {
-    font-style: normal;
-    font-weight: var(--font-semibold);
-    color: var(--color-gray-900);
-  }
-
-  .testimonial-card__location {
-    font-size: var(--text-sm);
-    color: var(--color-gray-500);
-  }
-
-  /* Trust badges */
-  .testimonials__trust {
-    display: flex;
-    flex-wrap: wrap;
+    gap: var(--space-2);
     justify-content: center;
-    gap: var(--space-8);
-    padding-top: var(--space-10);
-    border-top: 1px solid var(--color-gray-200);
   }
 
-  .trust-badge {
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
+  .testimonials__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: var(--color-gray-300);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
   }
 
-  .trust-badge__icon {
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--color-primary-50);
-    border-radius: var(--radius-xl);
-    color: var(--color-primary-600);
-  }
-
-  .trust-badge__icon svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  .trust-badge__content {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .trust-badge__title {
-    font-weight: var(--font-semibold);
-    color: var(--color-gray-900);
-  }
-
-  .trust-badge__text {
-    font-size: var(--text-sm);
-    color: var(--color-gray-500);
+  .testimonials__dot:global(.is-active) {
+    background: var(--color-primary);
+    transform: scale(1.3);
   }
 </style>
+
+<script>
+  const track = document.querySelector('.testimonials__track');
+  const cards = document.querySelectorAll('.testimonial-card');
+  const dots = document.querySelectorAll('.testimonials__dot');
+  const prevBtn = document.querySelector('.testimonials__arrow--prev');
+  const nextBtn = document.querySelector('.testimonials__arrow--next');
+
+  if (track && cards.length) {
+    let current = 0;
+
+    function getStep() {
+      // Width of one card + gap
+      const gap = parseFloat(getComputedStyle(track).gap) || 24;
+      return cards[0].offsetWidth + gap;
+    }
+
+    function getMaxIndex() {
+      const visible = Math.round(track.offsetWidth / cards[0].offsetWidth);
+      return Math.max(0, cards.length - visible);
+    }
+
+    function update() {
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
+      if (prevBtn) prevBtn.disabled = current <= 0;
+      if (nextBtn) nextBtn.disabled = current >= getMaxIndex();
+    }
+
+    function goTo(index) {
+      current = Math.max(0, Math.min(index, getMaxIndex()));
+      track.scrollTo({ left: current * getStep(), behavior: 'smooth' });
+      update();
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+    // Sync on swipe / manual scroll
+    let timer;
+    track.addEventListener('scroll', () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        const step = getStep();
+        if (step > 0) {
+          current = Math.round(track.scrollLeft / step);
+          update();
+        }
+      }, 100);
+    });
+
+    update();
+  }
+</script>

@@ -2,24 +2,25 @@
 const services = [
   {
     number: '01',
-    title: 'Construction',
-    description: 'De la conception à la réalisation, nous créons des piscines sur-mesure qui s\'intègrent parfaitement à votre environnement et à vos envies.',
-    features: ['Béton armé', 'Coque polyester', 'Design sur-mesure', 'Intégration paysagère'],
-    icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',
-  },
-  {
-    number: '02',
-    title: 'Entretien',
-    description: 'Un service d\'entretien professionnel pour une eau cristalline toute l\'année. Contrats adaptés à vos besoins.',
-    features: ['Contrats annuels', 'Analyse chimique', 'Nettoyage complet', 'Hivernage'],
+    title: 'Contrats d\'entretien',
+    description: 'Pour profiter d\'une eau claire et d\'un bassin propre, toute la saison.',
+    features: ['Particuliers prioritaires', 'Villas', 'Résidences secondaires'],
     icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
   },
   {
-    number: '03',
-    title: 'Rénovation',
-    description: 'Redonnez vie à votre piscine avec nos services de rénovation complète : liner, carrelage, équipements modernes.',
-    features: ['Changement liner', 'Réfection étanchéité', 'Modernisation', 'Mise aux normes'],
+    number: '02',
+    title: 'Rénovation & local technique',
+    description: 'Remise à niveau, rénovation du local technique, amélioration du confort et de la fiabilité.',
+    features: ['Remise à niveau', 'Local technique', 'Confort & fiabilité'],
     icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15',
+  },
+  {
+    number: '03',
+    title: 'Équipements & automatisation',
+    description: 'Régulation pH, régulation chlore, électrolyse au sel, chauffage/pompe à chaleur, filtration, solutions connectées.',
+    note: 'De plus en plus de systèmes sont connectés et automatisés\u00a0: nous les installons, les paramétrons, puis nous vous expliquons concrètement ce que cela change dans votre quotidien.',
+    features: ['Régulation automatique', 'Électrolyse au sel', 'Solutions connectées'],
+    icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z',
   },
 ];
 ---
@@ -43,7 +44,7 @@ const services = [
       {services.map((service, index) => (
         <article class="service-card" style={`--delay: ${index * 0.15}s`}>
           <div class="service-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
               <path d={service.icon} stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
@@ -53,11 +54,12 @@ const services = [
           <h3 class="service-card__title">{service.title}</h3>
 
           <p class="service-card__description">{service.description}</p>
+          {service.note && <p class="service-card__note">{service.note}</p>}
 
           <ul class="service-card__features">
             {service.features.map((feature) => (
               <li class="service-card__feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
                   <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 {feature}
@@ -79,9 +81,8 @@ const services = [
 
     <!-- Bottom CTA -->
     <div class="services__cta">
-      <p class="services__cta-text">Besoin d'un service sur-mesure ?</p>
-      <a href="/contact" class="btn btn--primary" data-magnetic>
-        <span>Nous contacter</span>
+      <a href="/contact" class="btn btn--primary">
+        <span>Contacter Aquacare Service</span>
       </a>
     </div>
   </div>
@@ -260,6 +261,14 @@ const services = [
 
   .service-card__description {
     font-size: var(--text-base);
+    color: var(--color-gray-600);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-6);
+  }
+
+  .service-card__note {
+    font-size: 13px;
+    font-style: italic;
     color: var(--color-gray-600);
     line-height: var(--leading-relaxed);
     margin-bottom: var(--space-6);

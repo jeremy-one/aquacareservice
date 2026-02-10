@@ -1,0 +1,378 @@
+---
+const steps = [
+  {
+    number: '01',
+    title: 'Analyse et traitement de l\'eau',
+    items: [
+      'Contrôle du pH, chlore, TAC et stabilisant au photomètre',
+      'Ajustement des produits pour un équilibre parfait',
+      'Prévention des phénomènes d\'eau verte ou trouble',
+    ],
+  },
+  {
+    number: '02',
+    title: 'Nettoyage complet du bassin',
+    items: [
+      'Nettoyage de la surface (feuilles, insectes)',
+      'Aspiration du fond et des parois',
+      'Nettoyage de la ligne d\'eau',
+    ],
+  },
+  {
+    number: '03',
+    title: 'Entretien du local technique',
+    items: [
+      'Vidange et nettoyage du préfiltre de pompe',
+      'Contre-lavage du filtre à sable',
+      'Vérification du bon fonctionnement des équipements',
+    ],
+  },
+  {
+    number: '04',
+    title: 'Contrôle préventif',
+    items: [
+      'Détection des fuites potentielles',
+      'Repérage des bruits anormaux',
+      'Signalement des pièces à remplacer (joints, vannes...)',
+    ],
+  },
+  {
+    number: '05',
+    title: 'Optimisation de la filtration',
+    items: [
+      'Ajustement des horaires selon la saison et la température',
+      'Paramétrage tenant compte des spécificités climatiques du Var',
+    ],
+  },
+];
+---
+
+<section class="process" id="process">
+  <div class="process__container container">
+    <div class="process__header">
+      <span class="process__label">Notre protocole</span>
+      <h2 class="process__title">Comment se déroule une visite d'entretien piscine dans le Golfe de Saint-Tropez&nbsp;?</h2>
+      <p class="process__intro">
+        Que vous soyez à Saint-Tropez, Ramatuelle, Grimaud, Cogolin ou Gassin, chaque passage de notre équipe suit un protocole d'entretien complet pour garantir une eau cristalline toute l'année.
+      </p>
+    </div>
+
+    <div class="process__layout">
+      <!-- Steps column -->
+      <div class="process__steps">
+        {steps.map((step) => (
+          <div class="process__step">
+            <span class="process__step-number">{step.number}</span>
+            <div class="process__step-content">
+              <h3 class="process__step-title">{step.title}</h3>
+              <ul class="process__step-items">
+                {step.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Pricing card (sticky on desktop) -->
+      <div class="process__pricing-col">
+        <div class="process__pricing">
+          <div class="process__pricing-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
+              <path d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="process__pricing-title">Tarifs clairs, sans surprise</h3>
+
+          <div class="process__pricing-price">
+            <span class="process__pricing-amount">136</span>
+            <div class="process__pricing-unit">
+              <span>&euro; TTC</span>
+              <span>/ mois</span>
+            </div>
+          </div>
+          <p class="process__pricing-from">À partir de, selon conditions</p>
+
+          <div class="process__pricing-divider"></div>
+
+          <ul class="process__pricing-list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Entretien complet inclus
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Taille du bassin prise en compte
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Environnement et accès évalués
+            </li>
+          </ul>
+
+          <p class="process__pricing-note">
+            Produits facturés selon consommation. Comptez 300 à 400&nbsp;&euro;/an pour une piscine standard.
+          </p>
+
+          <a href="/contact#devis" class="process__pricing-btn btn btn--primary">
+            <span>Demander un devis</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .process {
+    position: relative;
+    padding-block: var(--section-gap);
+    background: var(--color-light);
+  }
+
+  .process::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1920&q=80') center / cover no-repeat;
+    opacity: 0.16;
+    pointer-events: none;
+    z-index: 0;
+    filter: saturate(1.8);
+  }
+
+  .process__container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+  }
+
+  .process__header {
+    text-align: center;
+    max-width: 750px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .process__label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-primary);
+  }
+
+  .process__title {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-tight);
+    color: var(--color-dark);
+  }
+
+  .process__intro {
+    font-size: var(--text-lg);
+    color: var(--color-gray-600);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Two-column layout */
+  .process__layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 768px) {
+    .process__layout {
+      grid-template-columns: 1fr 500px;
+      align-items: start;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .process__layout {
+      grid-template-columns: 1fr 560px;
+    }
+  }
+
+  /* Steps */
+  .process__steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .process__step {
+    display: flex;
+    gap: var(--space-5);
+    padding: var(--space-5) var(--space-6);
+    background: rgba(14, 165, 233, 0.15);
+    border: 1px solid rgba(14, 165, 233, 0.25);
+    border-radius: var(--radius-2xl);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .process__step-number {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: var(--font-bold);
+    color: #0ea5e9;
+    opacity: 0.5;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .process__step-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .process__step-title {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    color: var(--color-dark);
+  }
+
+  .process__step-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .process__step-items li {
+    font-size: var(--text-sm);
+    color: var(--color-gray-600);
+    line-height: var(--leading-relaxed);
+    padding-left: var(--space-4);
+    position: relative;
+  }
+
+  .process__step-items li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 5px;
+    height: 5px;
+    background: var(--color-primary);
+    border-radius: 50%;
+  }
+
+  /* Pricing column */
+  .process__pricing-col {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .process__pricing-col {
+      position: sticky;
+      top: 100px;
+    }
+  }
+
+  .process__pricing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-4);
+    padding: var(--space-8) var(--space-6);
+    background: var(--color-white);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-gray-200);
+  }
+
+  .process__pricing-badge {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    border-radius: 50%;
+  }
+
+  .process__pricing-title {
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: var(--color-dark);
+  }
+
+  .process__pricing-price {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+  }
+
+  .process__pricing-amount {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  .process__pricing-unit {
+    display: flex;
+    flex-direction: column;
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--color-gray-600);
+    line-height: 1.3;
+  }
+
+  .process__pricing-from {
+    font-size: var(--text-sm);
+    color: var(--color-gray-500);
+  }
+
+  .process__pricing-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--color-gray-200);
+    margin-block: var(--space-2);
+  }
+
+  .process__pricing-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    width: 100%;
+    text-align: left;
+  }
+
+  .process__pricing-list li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-gray-700);
+  }
+
+  .process__pricing-list svg {
+    color: var(--color-secondary);
+    flex-shrink: 0;
+  }
+
+  .process__pricing-note {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--color-gray-500);
+    line-height: var(--leading-relaxed);
+  }
+
+  .process__pricing-btn {
+    margin-top: var(--space-2);
+    width: 100%;
+    justify-content: center;
+  }
+</style>

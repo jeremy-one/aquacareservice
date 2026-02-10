@@ -1,5 +1,6 @@
 ---
 import waterTexture from '../../assets/images/fond.webp';
+import doneIcon from '../../assets/icons/done.svg';
 ---
 
 <section class="hero" id="hero">
@@ -140,35 +141,49 @@ import waterTexture from '../../assets/images/fond.webp';
   <!-- Content -->
   <div class="hero__content" id="heroContent">
     <div class="hero__inner container">
-      <!-- Location badge -->
-      <div class="hero__badge">
-        <span class="hero__badge-dot"></span>
-        <span class="hero__badge-text">Var (83), Côte d'Azur</span>
-      </div>
-
-      <!-- Main title -->
-      <h1 class="hero__title">
+      <!-- Accroche visuelle -->
+      <p class="hero__title" aria-hidden="true">
         <span class="hero__title-line">Plongez dans</span>
         <span class="hero__title-line hero__title-line--accent">l'excellence</span>
-      </h1>
+      </p>
+
+      <!-- Main title (SEO) -->
+      <h1 class="hero__heading">Entretien de piscine &amp; maintenance haut de gamme dans le Golfe de Saint-Tropez</h1>
 
       <!-- Subtitle -->
       <p class="hero__subtitle">
-        Créateurs de piscines d'exception depuis 2009
+        Florent et son équipe prennent soin de votre bassin avec une approche simple&nbsp;: une piscine impeccable, un suivi régulier et un interlocuteur direct.
       </p>
 
       <!-- CTA buttons -->
       <div class="hero__cta">
-        <a href="/contact" class="hero__cta-primary" data-magnetic>
-          <span>Demander un devis</span>
+        <a href="/contact" class="hero__cta-primary">
+          <span>Nous contacter</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M7 17L17 7M17 7H7M17 7V17"/>
           </svg>
         </a>
-        <a href="/realisations" class="hero__cta-secondary" data-magnetic>
-          <span>Nos réalisations</span>
+        <a href="/contact#devis" class="hero__cta-secondary">
+          <span>Demander un devis</span>
         </a>
       </div>
+
+      <!-- Reassurance -->
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <img src={doneIcon.src} alt="" class="hero__stat-icon" />
+          <span class="hero__stat-text">Toujours la m&ecirc;me &eacute;quipe &agrave; votre service</span>
+        </div>
+        <div class="hero__stat">
+          <img src={doneIcon.src} alt="" class="hero__stat-icon" />
+          <span class="hero__stat-text">Intervention discr&egrave;te</span>
+        </div>
+        <div class="hero__stat">
+          <img src={doneIcon.src} alt="" class="hero__stat-icon" />
+          <span class="hero__stat-text">Compte-rendu clair si vous &ecirc;tes absent via notre application</span>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -177,18 +192,6 @@ import waterTexture from '../../assets/images/fond.webp';
     <span class="hero__scroll-text">Découvrir</span>
     <div class="hero__scroll-line">
       <div class="hero__scroll-dot"></div>
-    </div>
-  </div>
-
-  <!-- Stats floating -->
-  <div class="hero__stats">
-    <div class="hero__stat">
-      <span class="hero__stat-number">15+</span>
-      <span class="hero__stat-label">ans</span>
-    </div>
-    <div class="hero__stat">
-      <span class="hero__stat-number">500+</span>
-      <span class="hero__stat-label">piscines</span>
     </div>
   </div>
 
@@ -591,7 +594,7 @@ import waterTexture from '../../assets/images/fond.webp';
     align-items: center;
     justify-content: center;
     padding-top: 0;
-    padding-bottom: var(--space-32);
+    padding-bottom: var(--space-16);
     will-change: transform, filter, opacity;
     transition: filter 0.1s ease-out;
   }
@@ -604,38 +607,15 @@ import waterTexture from '../../assets/images/fond.webp';
     gap: var(--space-6);
   }
 
-  /* Badge */
-  .hero__badge {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    padding: var(--space-2) var(--space-4);
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
-    border-radius: var(--radius-full);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  /* SEO Heading */
+  .hero__heading {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-bold);
+    color: var(--color-dark);
+    text-align: center;
+    line-height: 1.4;
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards 0.3s;
-  }
-
-  .hero__badge-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--color-secondary);
-    border-radius: 50%;
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.2); opacity: 0.8; }
-  }
-
-  .hero__badge-text {
-    font-size: var(--text-sm);
-    font-weight: var(--font-medium);
-    color: var(--color-dark);
-    letter-spacing: 0.02em;
   }
 
   /* Title */
@@ -688,9 +668,10 @@ import waterTexture from '../../assets/images/fond.webp';
 
   /* Subtitle */
   .hero__subtitle {
-    font-size: var(--text-xl);
-    color: var(--color-dark-soft);
-    max-width: 450px;
+    font-size: var(--text-base);
+    color: var(--color-dark);
+    max-width: 580px;
+    line-height: 1.6;
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards 0.8s;
   }
@@ -893,69 +874,43 @@ import waterTexture from '../../assets/images/fond.webp';
   }
 
   /* ═══════════════════════════════════════════
-     STATS
+     REASSURANCE
      ═══════════════════════════════════════════ */
   .hero__stats {
-    position: absolute;
-    right: var(--container-padding);
-    top: 50%;
-    transform: translateY(-50%);
-    display: none;
-    flex-direction: column;
-    gap: var(--space-6);
-    z-index: 10;
-  }
-
-  @media (min-width: 1200px) {
-    .hero__stats {
-      display: flex;
-    }
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    max-width: 535px;
+    margin-top: var(--space-2);
+    background: rgba(0, 80, 120, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards 1.2s;
   }
 
   .hero__stat {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
-    padding: var(--space-4) var(--space-5);
-    border-radius: var(--radius-xl);
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    animation:
-      fadeInUp 0.8s ease forwards,
-      floatInWater 6s ease-in-out infinite;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
   }
 
-  .hero__stat:nth-child(1) {
-    animation-delay: 1.4s, 2s;
-  }
-  .hero__stat:nth-child(2) {
-    animation-delay: 1.6s, 2.5s;
-    animation-duration: 0.8s, 7s;
+  .hero__stat-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
   }
 
-  @keyframes floatInWater {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-8px);
-    }
-  }
-
-  .hero__stat-number {
-    display: block;
-    font-family: var(--font-display);
-    font-size: var(--text-3xl);
-    font-weight: var(--font-bold);
-    color: var(--color-primary);
-    line-height: 1;
-  }
-
-  .hero__stat-label {
-    font-size: var(--text-xs);
-    color: var(--color-gray-600);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+  .hero__stat-text {
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.4;
   }
 
   /* ═══════════════════════════════════════════

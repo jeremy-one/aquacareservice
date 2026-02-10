@@ -1,0 +1,285 @@
+---
+const cities = [
+  { name: 'Sainte-Maxime', lat: 43.3089, lng: 6.6364 },
+  { name: 'Plan-de-la-Tour', lat: 43.3394, lng: 6.5494 },
+  { name: 'Grimaud', lat: 43.2756, lng: 6.5211 },
+  { name: 'Cogolin', lat: 43.2517, lng: 6.5319 },
+  { name: 'Saint-Tropez', lat: 43.2727, lng: 6.6407 },
+  { name: 'Ramatuelle', lat: 43.2183, lng: 6.6075 },
+  { name: 'Cavalaire', lat: 43.1728, lng: 6.5297 },
+  { name: 'La Croix-Valmer', lat: 43.2056, lng: 6.5681 },
+  { name: 'Les Issambres', lat: 43.3364, lng: 6.6914 },
+  { name: 'Saint-Aygulf', lat: 43.4039, lng: 6.7256 },
+  { name: 'Roquebrune-sur-Argens', lat: 43.4447, lng: 6.6367 },
+  { name: 'Puget-sur-Argens', lat: 43.4553, lng: 6.6864 },
+  { name: 'Fréjus', lat: 43.4332, lng: 6.7370 },
+  { name: 'Saint-Raphaël', lat: 43.4253, lng: 6.7687 },
+  { name: 'Le Muy', lat: 43.4711, lng: 6.5667 },
+];
+---
+
+<section class="zone" id="zone">
+  <div class="zone__container container">
+    <span class="zone__label">Zone d'intervention</span>
+    <h2 class="zone__title">Notre zone d'intervention dans le Var</h2>
+
+    <div class="zone__cities">
+      {cities.map((city) => (
+        <button class="zone__city" data-city={city.name} type="button">
+          <span class="zone__city-dot"></span>
+          {city.name}
+        </button>
+      ))}
+    </div>
+
+    <div class="zone__map-wrapper">
+      <div id="zone-map" class="zone__map"></div>
+    </div>
+  </div>
+</section>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<style>
+  .zone {
+    position: relative;
+    padding-block: var(--section-gap);
+    background: var(--color-light);
+  }
+
+  .zone__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-6);
+    background: rgb(212 227 250);
+    padding: 30px;
+    border-radius: 20px;
+  }
+
+  .zone__label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-primary);
+  }
+
+  .zone__title {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-tight);
+    color: var(--color-dark);
+    max-width: 700px;
+  }
+
+  .zone__map-wrapper {
+    margin-top: var(--space-4);
+    max-width: 900px;
+    width: 100%;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    border: 1px solid var(--color-gray-200);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  }
+
+  .zone__map {
+    width: 100%;
+    height: 420px;
+  }
+
+  @media (max-width: 767px) {
+    .zone__map {
+      height: 320px;
+    }
+  }
+
+  .zone__cities {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    max-width: 900px;
+  }
+
+  .zone__city {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: #0369a1;
+    border: none;
+    border-radius: var(--radius-full);
+    background: rgba(14, 165, 233, 0.25);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .zone__city-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .zone__city:hover {
+    border-color: var(--color-primary);
+    color: var(--color-white);
+    background: var(--color-primary);
+  }
+
+  .zone__city:hover .zone__city-dot {
+    background: var(--color-white);
+  }
+
+  .zone__city:global(.is-active) {
+    border-color: var(--color-primary);
+    color: var(--color-white);
+    background: var(--color-primary);
+  }
+
+  .zone__city:global(.is-active) .zone__city-dot {
+    background: var(--color-white);
+  }
+</style>
+
+<script define:vars={{ cities }}>
+  function initMap() {
+    if (typeof L === 'undefined') {
+      setTimeout(initMap, 100);
+      return;
+    }
+
+    const map = L.map('zone-map', {
+      scrollWheelZoom: false,
+      zoomControl: true,
+      attributionControl: true,
+    }).setView([43.34, 6.63], 11);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 16,
+    }).addTo(map);
+
+    const markerIcon = L.divIcon({
+      className: 'zone-marker',
+      html: '<span class="zone-marker__dot"></span>',
+      iconSize: [14, 14],
+      iconAnchor: [7, 7],
+    });
+
+    // Polygon outline ordered clockwise
+    const polygonCoords = [
+      [43.4711, 6.5667],  // Le Muy
+      [43.4447, 6.6367],  // Roquebrune-sur-Argens
+      [43.4553, 6.6864],  // Puget-sur-Argens
+      [43.4332, 6.7370],  // Fréjus
+      [43.4253, 6.7687],  // Saint-Raphaël
+      [43.4039, 6.7256],  // Saint-Aygulf
+      [43.3364, 6.6914],  // Les Issambres
+      [43.3089, 6.6364],  // Sainte-Maxime
+      [43.2727, 6.6407],  // Saint-Tropez
+      [43.2183, 6.6075],  // Ramatuelle
+      [43.2056, 6.5681],  // La Croix-Valmer
+      [43.1728, 6.5297],  // Cavalaire
+      [43.2517, 6.5319],  // Cogolin
+      [43.2756, 6.5211],  // Grimaud
+      [43.3394, 6.5494],  // Plan-de-la-Tour
+    ];
+
+    L.polygon(polygonCoords, {
+      color: '#0891B2',
+      weight: 2,
+      opacity: 0.6,
+      fillColor: '#0891B2',
+      fillOpacity: 0.08,
+      dashArray: '6, 4',
+    }).addTo(map);
+
+    const markers = {};
+
+    cities.forEach((city) => {
+      const marker = L.marker([city.lat, city.lng], { icon: markerIcon })
+        .addTo(map)
+        .bindPopup(`<strong>${city.name}</strong>`, {
+          closeButton: false,
+          className: 'zone-popup',
+        });
+      markers[city.name] = marker;
+    });
+
+    // City tags interaction
+    const cityButtons = document.querySelectorAll('.zone__city[data-city]');
+
+    cityButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const name = btn.getAttribute('data-city');
+        const marker = markers[name];
+        if (!marker) return;
+
+        // Active state on tag
+        cityButtons.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+
+        // Pan + zoom and open popup
+        map.flyTo(marker.getLatLng(), 13, { duration: 0.6 });
+        setTimeout(() => marker.openPopup(), 400);
+      });
+    });
+
+    // Reset active state when clicking map
+    map.on('click', () => {
+      cityButtons.forEach((b) => b.classList.remove('is-active'));
+    });
+  }
+
+  // Load Leaflet JS dynamically
+  const script = document.createElement('script');
+  script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+  script.onload = initMap;
+  document.head.appendChild(script);
+</script>
+
+<style is:global>
+  .zone-marker {
+    background: none !important;
+    border: none !important;
+  }
+
+  .zone-marker__dot {
+    display: block;
+    width: 14px;
+    height: 14px;
+    background: #0891B2;
+    border: 2.5px solid white;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(8, 145, 178, 0.4);
+    transition: transform 0.2s ease;
+  }
+
+  .zone-marker:hover .zone-marker__dot {
+    transform: scale(1.4);
+  }
+
+  .zone-popup .leaflet-popup-content-wrapper {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    padding: 0;
+  }
+
+  .zone-popup .leaflet-popup-content {
+    margin: 8px 14px;
+    font-size: 13px;
+    font-family: inherit;
+    color: #1a1a2e;
+  }
+
+  .zone-popup .leaflet-popup-tip {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+</style>

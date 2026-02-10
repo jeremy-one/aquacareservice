@@ -18,12 +18,12 @@
   --color-dark: #0c1824;
   --color-dark-soft: #1a2b3c;
 
-  /* Primary - Turquoise/Cyan piscine */
-  --color-primary: #0891b2;
-  --color-primary-light: #22d3ee;
-  --color-primary-lighter: #67e8f9;
-  --color-primary-soft: #cffafe;
-  --color-primary-glow: rgba(8, 145, 178, 0.3);
+  /* Primary - Bleu piscine */
+  --color-primary: #0284c7;
+  --color-primary-light: #38bdf8;
+  --color-primary-lighter: #7dd3fc;
+  --color-primary-soft: #e0f2fe;
+  --color-primary-glow: rgba(2, 132, 199, 0.3);
 
   /* Secondary - Vert d'eau/Emerald */
   --color-secondary: #059669;
@@ -49,8 +49,8 @@
 
   /* Gradients */
   --gradient-hero: linear-gradient(180deg, var(--color-primary-soft) 0%, var(--color-white) 50%, var(--color-white) 100%);
-  --gradient-ocean: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 50%, var(--color-secondary-light) 100%);
-  --gradient-water: linear-gradient(180deg, rgba(8, 145, 178, 0.1) 0%, rgba(5, 150, 105, 0.05) 100%);
+  --gradient-ocean: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 50%, #67b9e9 100%);
+  --gradient-water: linear-gradient(180deg, rgba(2, 132, 199, 0.1) 0%, rgba(56, 189, 248, 0.05) 100%);
 
   /* ─────────────────────────────────────────
      TYPOGRAPHIE
