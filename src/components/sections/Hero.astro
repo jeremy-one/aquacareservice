@@ -644,7 +644,12 @@ import waterTexture from '../../assets/images/fond.webp';
     flex-direction: column;
     gap: 0;
     font-size: clamp(2.5rem, 10vw, 7rem);
-    filter: url(#underwater-distortion);
+  }
+
+  @media (min-width: 768px) {
+    .hero__title {
+      filter: url(#underwater-distortion);
+    }
   }
 
   .hero__title-line {
