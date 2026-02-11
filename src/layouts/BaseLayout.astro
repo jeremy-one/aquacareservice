@@ -17,13 +17,15 @@ interface Props {
   description: string;
   canonical?: string;
   ogImage?: string;
+  darkHero?: boolean;
 }
 
 const {
   title,
   description,
   canonical = Astro.url.href,
-  ogImage = '/og-image.jpg'
+  ogImage = '/og-image.jpg',
+  darkHero = false,
 } = Astro.props;
 
 const siteUrl = 'https://aquacareservice.fr';
@@ -91,7 +93,7 @@ const siteUrl = 'https://aquacareservice.fr';
 
 </head>
 
-<body>
+<body class:list={[darkHero && 'has-dark-hero']}>
   <!-- Grain overlay -->
   <div class="grain" aria-hidden="true"></div>
 

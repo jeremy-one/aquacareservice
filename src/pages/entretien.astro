@@ -1,0 +1,556 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/sections/PageHero.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import CTA from '../components/sections/CTA.astro';
+
+import imgPool from '../assets/images/Divers piscine/IMG_4695.jpeg';
+import imgEntretien from '../assets/images/Avant Après/passage entretien/IMG_2861.jpeg';
+import imgCopro from '../assets/images/entretien copropriété/IMG_1563.jpeg';
+
+const title = 'Contrat d\'entretien piscine – Golfe de Saint-Tropez | Aquacare';
+const description = 'Passage hebdomadaire en saison, suivi hiver, nettoyage, chimie, contrôle matériel. Contrats à partir de 136 € TTC/mois (hors produits).';
+
+const profiles = [
+  {
+    icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',
+    title: 'Résidences secondaires',
+    description: 'Vous n\'êtes pas sur place toute l\'année\u00a0? Nous assurons un suivi régulier de votre piscine avec un compte-rendu après chaque passage.',
+    image: imgPool,
+  },
+  {
+    icon: 'M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z',
+    title: 'Propriétaires exigeants',
+    description: 'Un bassin parfaitement net toute la saison, sans compromis sur la qualité de l\'eau.',
+    image: imgEntretien,
+  },
+  {
+    icon: 'M12 3C12 3 7 9 7 13a5 5 0 0010 0c0-4-5-10-5-10z',
+    title: 'Piscines accompagnées',
+    description: 'Fini la manipulation des produits chimiques et les réglages techniques. Vous profitez, nous gérons le reste.',
+    image: imgCopro,
+  },
+];
+
+const inclus = [
+  {
+    number: '01',
+    title: 'Nettoyage du bassin',
+    items: [
+      'Nettoyage de surface à l\'épuisette (feuilles, insectes, débris)',
+      'Aspiration du fond et des parois si nécessaire',
+      'Nettoyage de la ligne d\'eau et des zones sensibles',
+      'Contrôle visuel de l\'état général du bassin',
+    ],
+  },
+  {
+    number: '02',
+    title: 'Analyse et traitement de l\'eau',
+    items: [
+      'Contrôle des paramètres\u00a0: pH, chlore, TAC, stabilisant',
+      'Ajustement des produits pour un équilibre optimal',
+      'Mise en sécurité immédiate en cas de dérive (eau verte, turbidité)',
+    ],
+  },
+  {
+    number: '03',
+    title: 'Vérification du local technique',
+    items: [
+      'Nettoyage du préfiltre de pompe et contrôle du filtre',
+      'Détection des anomalies\u00a0: fuite, bruit suspect, baisse de débit',
+      'Ajustement du temps de filtration selon la saison et les températures',
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description} darkHero>
+  <!-- Hero -->
+  <PageHero
+    title="Contrats d'entretien piscine pour particuliers & résidences secondaires"
+    subtitle="Une piscine impeccable à chaque arrivée, sans y penser. De Saint-Tropez à Ramatuelle, notre équipe assure un entretien rigoureux et personnalisé — sans compromis, sans surprise."
+    ctaText="Contacter l'équipe Aquacare"
+    ctaHref="https://wa.me/"
+  />
+
+  <!-- Section "Pour qui ?" -->
+  <section class="entretien-profiles">
+    <div class="entretien-profiles__container container">
+      <SectionHeader
+        label="Pour qui ?"
+        title="L'entretien de piscine dans le Golfe de Saint-Tropez"
+      />
+
+      <div class="entretien-profiles__grid">
+        {profiles.map((profile) => (
+          <article class="profile-card">
+            <div class="profile-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
+                <path d={profile.icon} stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="profile-card__title">{profile.title}</h3>
+            <p class="profile-card__desc">{profile.description}</p>
+            <img src={profile.image.src} alt={profile.title} class="profile-card__bg" loading="lazy" decoding="async" />
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section "Ce qui est inclus" -->
+  <section class="entretien-inclus">
+    <div class="entretien-inclus__container container">
+      <SectionHeader
+        label="Ce qui est inclus"
+        title="Ce qui est inclus à chaque <span class='text-water'>passage d'entretien</span>"
+      />
+
+      <div class="entretien-inclus__steps">
+        {inclus.map((step) => (
+          <div class="entretien-inclus__step">
+            <span class="entretien-inclus__step-number">{step.number}</span>
+            <div class="entretien-inclus__step-content">
+              <h3 class="entretien-inclus__step-title">{step.title}</h3>
+              <ul class="entretien-inclus__step-items">
+                {step.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="entretien-inclus__cta">
+        <a href="/contact" class="btn btn--primary">
+          <span>Demander un devis personnalisé</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section "Périodicité" -->
+  <section class="entretien-period">
+    <div class="entretien-period__container container">
+      <SectionHeader
+        label="Périodicité"
+        title="La <span class='text-water'>périodicité</span> d'entretien des piscines"
+        subtitle="La périodicité varie en fonction du contrat souscrit, de la saison et des besoins spécifiques de votre installation."
+      />
+
+      <div class="entretien-period__grid">
+        <div class="entretien-period__card">
+          <div class="entretien-period__card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32">
+              <path d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="entretien-period__card-title">Saison</h3>
+          <p class="entretien-period__card-dates">15 avril &rarr; 15 octobre</p>
+          <p class="entretien-period__card-freq">1 passage / semaine</p>
+          <p class="entretien-period__card-note">Plus de passages possibles selon le contrat</p>
+        </div>
+
+        <div class="entretien-period__card">
+          <div class="entretien-period__card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32">
+              <path d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="entretien-period__card-title">Hiver</h3>
+          <p class="entretien-period__card-dates">15 octobre &rarr; 15 avril</p>
+          <p class="entretien-period__card-freq">1 passage / mois ou / 15 jours</p>
+          <p class="entretien-period__card-note">Selon vos besoins et votre installation</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section "Produits & Réparations" -->
+  <section class="entretien-produits">
+    <div class="entretien-produits__container container">
+      <div class="entretien-produits__grid">
+        <div class="entretien-produits__block">
+          <SectionHeader
+            label="Produits"
+            title="Les produits et consommables"
+            align="left"
+          />
+          <p class="entretien-produits__text">
+            Le contrat couvre <strong>la prestation d'entretien</strong>. Les produits sont facturés selon la consommation réelle.
+          </p>
+          <p class="entretien-produits__text">
+            En moyenne, sur une piscine standard, on observe souvent <strong>2 réassorts</strong> dans l'année, pour un budget annuel indicatif de <strong>300–400&nbsp;&euro;</strong>.
+          </p>
+          <p class="entretien-produits__text entretien-produits__text--muted">
+            Par ailleurs, nous vous expliquons quels produits sont privilégiés lors de l'entretien et les raisons de leur utilisation.
+          </p>
+        </div>
+
+        <div class="entretien-produits__block">
+          <SectionHeader
+            label="Réparations"
+            title="Les petites réparations"
+            align="left"
+          />
+          <p class="entretien-produits__text">
+            Les petites pièces courantes (joints, vannes, bouchons, panier…) sont remplacées directement lors de notre passage.
+          </p>
+          <p class="entretien-produits__text">
+            Pour les réparations plus conséquentes, un devis vous est transmis avant toute intervention.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA + FAQ -->
+  <CTA
+    title="Vous souhaitez demander un devis d'entretien de piscine ?"
+    text="Cliquez sur le bouton WhatsApp et envoyez-nous les informations suivantes :"
+    listItems={[
+      'Nom de la ville',
+      'Dimensions approximatives du bassin',
+      'Photo du local technique',
+      'Fréquence d\'entretien souhaitée',
+    ]}
+    faqTitle="Vos questions sur l'<span class='text-water'>entretien</span> de piscine (83)"
+    faqs={[
+      {
+        question: 'Quel est le prix d\'un contrat d\'entretien de piscine à Saint-Tropez ?',
+        answer: 'Nos contrats d\'entretien démarrent à partir de 136 € TTC par mois pour la prestation de service. Les produits de traitement sont facturés séparément selon la consommation réelle. À titre indicatif, pour une piscine standard, le budget produits représente 300 à 350 € par an.',
+      },
+      {
+        question: 'À quelle fréquence passez-vous pour l\'entretien d\'une piscine ?',
+        answer: 'En saison (du 15 avril au 15 octobre), nous effectuons un passage hebdomadaire. En période hivernale, le rythme passe à un passage mensuel ou bimensuel selon vos besoins et les spécificités de votre installation.',
+      },
+      {
+        question: 'Intervenez-vous sur les piscines hors-sol ?',
+        answer: 'Non, nous n\'assurons pas l\'entretien des piscines hors-sol. Aquacare Service est spécialisé dans les bassins enterrés et semi-enterrés, qui nécessitent une expertise technique spécifique en matière de local technique, de filtration et de traitement de l\'eau.',
+      },
+      {
+        question: 'Proposez-vous des contrats uniquement pour juillet-août ?',
+        answer: 'Nous privilégions les contrats à la saison (avril à octobre) ou à l\'année. Un contrat de deux mois ne permet pas de préparer correctement le bassin en amont ni d\'accompagner la fermeture en fin de saison.',
+      },
+    ]}
+  />
+</BaseLayout>
+
+<style>
+  /* ═══════════════════════════════════════════
+     PROFILES - "Pour qui ?"
+     ═══════════════════════════════════════════ */
+  .entretien-profiles {
+    padding-block: var(--section-gap);
+    background: var(--color-light);
+  }
+
+  .entretien-profiles__container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .entretien-profiles__grid {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 768px) {
+    .entretien-profiles__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .profile-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-8);
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(14, 165, 233, 0.1);
+    overflow: hidden;
+    transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease;
+  }
+
+  .profile-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .profile-card__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.06;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .profile-card > *:not(.profile-card__bg) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .profile-card__icon {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+  }
+
+  .profile-card__title {
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: var(--color-dark);
+    margin-bottom: var(--space-3);
+  }
+
+  .profile-card__desc {
+    font-size: var(--text-base);
+    color: var(--color-gray-600);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ═══════════════════════════════════════════
+     INCLUS - Step cards
+     ═══════════════════════════════════════════ */
+  .entretien-inclus {
+    padding-block: var(--section-gap);
+    background: var(--color-white);
+  }
+
+  .entretien-inclus__container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  .entretien-inclus__steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .entretien-inclus__step {
+    display: flex;
+    gap: var(--space-5);
+    padding: var(--space-5) var(--space-6);
+    background: rgba(14, 165, 233, 0.06);
+    border: 1px solid rgba(14, 165, 233, 0.15);
+    border-radius: var(--radius-xl);
+  }
+
+  .entretien-inclus__step-number {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+    opacity: 0.4;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .entretien-inclus__step-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .entretien-inclus__step-title {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    color: var(--color-dark);
+  }
+
+  .entretien-inclus__step-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .entretien-inclus__step-items li {
+    font-size: var(--text-sm);
+    color: var(--color-gray-600);
+    line-height: var(--leading-relaxed);
+    padding-left: var(--space-4);
+    position: relative;
+  }
+
+  .entretien-inclus__step-items li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 5px;
+    height: 5px;
+    background: var(--color-primary);
+    border-radius: 50%;
+  }
+
+  .entretien-inclus__cta {
+    margin-top: var(--space-4);
+  }
+
+  /* ═══════════════════════════════════════════
+     PERIODICITE
+     ═══════════════════════════════════════════ */
+  .entretien-period {
+    padding-block: var(--section-gap);
+    background: var(--color-dark);
+    position: relative;
+  }
+
+  .entretien-period::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(100deg, transparent 0%, rgba(14, 165, 233, 0.03) 10%, transparent 20%),
+      repeating-linear-gradient(80deg, transparent 0%, rgba(14, 165, 233, 0.02) 15%, transparent 30%);
+    pointer-events: none;
+  }
+
+  .entretien-period__container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  /* Override SectionHeader colors for dark bg */
+  .entretien-period :global(.section-header__title) {
+    color: var(--color-white);
+  }
+  .entretien-period :global(.section-header__subtitle) {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .entretien-period__grid {
+    display: grid;
+    gap: var(--space-8);
+    max-width: 800px;
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .entretien-period__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .entretien-period__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-4);
+    padding: var(--space-8) var(--space-6);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-2xl);
+    transition: border-color 0.3s ease;
+  }
+
+  .entretien-period__card:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .entretien-period__card-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(14, 165, 233, 0.15);
+    color: var(--color-primary-light);
+    border-radius: 50%;
+  }
+
+  .entretien-period__card-title {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-bold);
+    color: var(--color-white);
+  }
+
+  .entretien-period__card-dates {
+    font-size: var(--text-base);
+    color: var(--color-primary-light);
+    font-weight: var(--font-semibold);
+  }
+
+  .entretien-period__card-freq {
+    font-size: var(--text-lg);
+    font-weight: var(--font-bold);
+    color: var(--color-white);
+  }
+
+  .entretien-period__card-note {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+  }
+
+  /* ═══════════════════════════════════════════
+     PRODUITS & REPARATIONS
+     ═══════════════════════════════════════════ */
+  .entretien-produits {
+    padding-block: var(--section-gap);
+    background: var(--color-light);
+  }
+
+  .entretien-produits__container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .entretien-produits__grid {
+    display: grid;
+    gap: var(--space-12);
+  }
+
+  @media (min-width: 768px) {
+    .entretien-produits__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-16);
+    }
+  }
+
+  .entretien-produits__block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .entretien-produits__text {
+    font-size: var(--text-base);
+    color: var(--color-gray-600);
+    line-height: var(--leading-relaxed);
+  }
+
+  .entretien-produits__text strong {
+    color: var(--color-dark);
+    font-weight: var(--font-semibold);
+  }
+
+  .entretien-produits__text--muted {
+    font-style: italic;
+    color: var(--color-gray-500);
+  }
+</style>

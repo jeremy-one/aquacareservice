@@ -1,0 +1,101 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+const { title, subtitle, ctaText, ctaHref } = Astro.props;
+---
+
+<section class="page-hero">
+  <div class="page-hero__container container">
+    <h1 class="page-hero__title">{title}</h1>
+    <p class="page-hero__subtitle">{subtitle}</p>
+    {ctaText && ctaHref && (
+      <a href={ctaHref} class="page-hero__cta btn btn--primary btn--lg">
+        <span>{ctaText}</span>
+      </a>
+    )}
+  </div>
+
+  <div class="page-hero__wave">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="var(--color-light)"/>
+    </svg>
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    position: relative;
+    padding-top: clamp(8rem, 18vh, 12rem);
+    padding-bottom: var(--section-gap);
+    background: var(--color-dark);
+  }
+
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        100deg,
+        transparent 0%,
+        rgba(14, 165, 233, 0.03) 10%,
+        transparent 20%
+      ),
+      repeating-linear-gradient(
+        80deg,
+        transparent 0%,
+        rgba(14, 165, 233, 0.02) 15%,
+        transparent 30%
+      );
+    pointer-events: none;
+  }
+
+  .page-hero__container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-6);
+    max-width: 900px;
+  }
+
+  .page-hero__title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-tight);
+    color: var(--color-white);
+  }
+
+  .page-hero__subtitle {
+    font-size: var(--text-lg);
+    color: rgba(255, 255, 255, 0.7);
+    line-height: var(--leading-relaxed);
+    max-width: 700px;
+  }
+
+  .page-hero__cta {
+    margin-top: var(--space-4);
+  }
+
+  .page-hero__wave {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    line-height: 0;
+    z-index: 2;
+  }
+
+  .page-hero__wave svg {
+    width: 100%;
+    height: 50px;
+    display: block;
+  }
+</style>

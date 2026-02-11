@@ -1,10 +1,14 @@
 ---
 const navLinks = [
   { href: '/', label: 'Accueil', number: '01' },
-  { href: '/services', label: 'Services', number: '02' },
   { href: '/realisations', label: 'Réalisations', number: '03' },
-  { href: '/a-propos', label: 'À propos', number: '04' },
+  { href: '/#about', label: 'À propos', number: '04' },
   { href: '/contact', label: 'Contact', number: '05' },
+];
+
+const serviceLinks = [
+  { href: '/entretien', label: 'Entretien' },
+  { href: '/renovation', label: 'Rénovation & équipements' },
 ];
 ---
 
@@ -42,8 +46,35 @@ const navLinks = [
     <div class="menu__content">
       <!-- Nav links -->
       <ul class="menu__nav">
-        {navLinks.map((link, index) => (
-          <li class="menu__nav-item" style={`--delay: ${index * 0.1}s`}>
+        <!-- Accueil -->
+        <li class="menu__nav-item" style="--delay: 0s">
+          <a href="/" class="menu__nav-link">
+            <span class="menu__nav-number">01</span>
+            <span class="menu__nav-text" data-text="Accueil">Accueil</span>
+          </a>
+        </li>
+
+        <!-- Services avec sous-menu -->
+        <li class="menu__nav-item menu__nav-item--has-sub" style="--delay: 0.1s">
+          <button class="menu__nav-link menu__nav-toggle" data-services-toggle type="button">
+            <span class="menu__nav-number">02</span>
+            <span class="menu__nav-text" data-text="Services">Services</span>
+            <svg class="menu__nav-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="24" height="24">
+              <path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="menu__sub">
+            <div class="menu__sub-inner">
+              {serviceLinks.map((link) => (
+                <a href={link.href} class="menu__sub-link">{link.label}</a>
+              ))}
+            </div>
+          </div>
+        </li>
+
+        <!-- Rest of nav -->
+        {navLinks.slice(1).map((link, index) => (
+          <li class="menu__nav-item" style={`--delay: ${(index + 2) * 0.1}s`}>
             <a href={link.href} class="menu__nav-link">
               <span class="menu__nav-number">{link.number}</span>
               <span class="menu__nav-text" data-text={link.label}>{link.label}</span>
@@ -136,6 +167,11 @@ const navLinks = [
     filter: brightness(0) invert(1);
   }
 
+  /* When page has dark hero AND header is not scrolled */
+  body.has-dark-hero .header:not(.is-scrolled) .header__logo-img {
+    filter: brightness(0) invert(1);
+  }
+
   /* Right */
   .header__right {
     display: flex;
@@ -175,6 +211,11 @@ const navLinks = [
     background: var(--color-white);
   }
 
+  /* When page has dark hero AND header is not scrolled */
+  body.has-dark-hero .header:not(.is-scrolled) .header__toggle-line {
+    background: var(--color-white);
+  }
+
   .header__toggle.is-active .header__toggle-line:first-child {
     transform: translateY(5px) rotate(45deg);
   }
@@ -184,7 +225,7 @@ const navLinks = [
   }
 
   /* ═══════════════════════════════════════════
-     FULL-SCREEN MENU - Keep the cool layout!
+     FULL-SCREEN MENU
      ═══════════════════════════════════════════ */
   .menu {
     position: fixed;
@@ -198,7 +239,7 @@ const navLinks = [
     pointer-events: auto;
   }
 
-  /* Animated background panels - turquoise gradient */
+  /* Animated background panels — bleu marine charte */
   .menu__bg {
     position: absolute;
     inset: 0;
@@ -212,12 +253,12 @@ const navLinks = [
   }
 
   .menu__bg-panel--1 {
-    background: var(--color-primary);
+    background: var(--color-dark);
     transition-delay: 0s;
   }
 
   .menu__bg-panel--2 {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-dark-soft) 100%);
+    background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-dark-deep) 100%);
     transition-delay: 0.1s;
   }
 
@@ -281,6 +322,10 @@ const navLinks = [
     overflow: hidden;
   }
 
+  .menu__nav-item--has-sub {
+    overflow: visible;
+  }
+
   .menu__nav-link {
     display: flex;
     align-items: baseline;
@@ -319,13 +364,71 @@ const navLinks = [
     position: absolute;
     left: 0;
     top: 0;
-    color: var(--color-primary-lighter);
+    color: var(--color-logo-teal);
     clip-path: polygon(0 50%, 100% 50%, 100% 50%, 0 50%);
     transition: clip-path 0.4s var(--ease-out-expo);
   }
 
   .menu__nav-link:hover .menu__nav-text::after {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  /* ═══════════════════════════════════════════
+     SERVICES SUB-MENU
+     ═══════════════════════════════════════════ */
+  .menu__nav-toggle {
+    cursor: pointer;
+    background: none;
+    border: none;
+    font: inherit;
+    color: inherit;
+    width: 100%;
+    text-align: left;
+  }
+
+  .menu__nav-arrow {
+    width: clamp(1.2rem, 4vw, 2.5rem);
+    height: clamp(1.2rem, 4vw, 2.5rem);
+    color: rgba(255, 255, 255, 0.4);
+    flex-shrink: 0;
+    align-self: center;
+    transition: transform 0.4s var(--ease-out-expo), color 0.3s ease;
+  }
+
+  .menu__nav-item--has-sub.is-open .menu__nav-arrow {
+    transform: rotate(90deg);
+    color: var(--color-logo-teal);
+  }
+
+  .menu__sub {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s var(--ease-out-expo);
+  }
+
+  .menu__nav-item--has-sub.is-open .menu__sub {
+    max-height: 200px;
+  }
+
+  .menu__sub-inner {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-2) 0 var(--space-4) 0;
+  }
+
+  .menu__sub-link {
+    display: block;
+    padding: var(--space-2) 0 var(--space-2) calc(var(--space-4) + 1.2em);
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 4vw, 1.75rem);
+    font-weight: var(--font-semibold);
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.3s ease, padding-left 0.3s var(--ease-out-expo);
+  }
+
+  .menu__sub-link:hover {
+    color: var(--color-white);
+    padding-left: calc(var(--space-6) + 1.2em);
   }
 
   /* Info */
@@ -365,7 +468,7 @@ const navLinks = [
   }
 
   .menu__info-link:hover {
-    color: var(--color-primary-lighter);
+    color: var(--color-logo-teal);
   }
 
   .menu__socials {
@@ -389,16 +492,22 @@ const navLinks = [
 </style>
 
 <script>
-  // Header scroll effect only - menu toggle is handled in BaseLayout
+  // Header scroll effect
   const header = document.getElementById('header');
 
   window.addEventListener('scroll', () => {
-    const currentScroll = window.scrollY;
-
-    if (currentScroll > 100) {
+    if (window.scrollY > 100) {
       header?.classList.add('is-scrolled');
     } else {
       header?.classList.remove('is-scrolled');
     }
+  });
+
+  // Services sub-menu toggle
+  const servicesToggle = document.querySelector('[data-services-toggle]');
+  const servicesItem = servicesToggle?.closest('.menu__nav-item--has-sub');
+
+  servicesToggle?.addEventListener('click', () => {
+    servicesItem?.classList.toggle('is-open');
   });
 </script>

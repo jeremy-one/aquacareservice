@@ -1,22 +1,44 @@
 ---
-const faqs = [
-  {
-    question: 'Dans quelles villes du Var intervenez-vous pour l\'entretien de piscine ?',
-    answer: 'Aquacare Service intervient principalement dans le Golfe de Saint-Tropez\u00a0: Sainte-Maxime, Plan-de-la-Tour, Grimaud, Cogolin, Saint-Tropez, Ramatuelle, Gassin, Cavalaire et La Croix-Valmer. Nous couvrons également Les Issambres, Saint-Aygulf, Roquebrune-sur-Argens, Puget-sur-Argens, Fréjus, Saint-Raphaël et Le Muy.',
-  },
-  {
-    question: 'Que comprend une visite d\'entretien de piscine ?',
-    answer: 'Chaque passage inclut\u00a0: l\'analyse et le traitement de l\'eau (pH, chlore, TAC), le nettoyage complet du bassin (écumage, aspiration, brossage), l\'entretien du local technique (préfiltre, filtre), un contrôle préventif des équipements et l\'optimisation de la filtration.',
-  },
-  {
-    question: 'Proposez-vous un service de rattrapage pour piscine verte ?',
-    answer: 'Oui, nous intervenons pour rattraper une eau verte ou trouble et remettre votre bassin en état optimal.',
-  },
-  {
-    question: 'Dois-je être présent lors de vos interventions ?',
-    answer: 'Non, nous intervenons de manière discrète et autonome. Un compte-rendu vous est transmis après chaque visite via notre application.',
-  },
-];
+interface Props {
+  title?: string;
+  text?: string;
+  listItems?: string[];
+  responseText?: string;
+  faqLabel?: string;
+  faqTitle?: string;
+  faqs?: { question: string; answer: string }[];
+}
+
+const {
+  title = 'Vous souhaitez effectuer un diagnostic ou souscrire un contrat d\'entretien\u00a0?',
+  text = 'Cliquez sur le bouton WhatsApp et envoyez-nous les informations suivantes\u00a0:',
+  listItems = [
+    'Nom de la ville',
+    'Type de piscine concerné',
+    'Si possible, une photo du local technique',
+  ],
+  responseText = 'Réponse en 72h, devis clair.',
+  faqLabel = 'FAQ',
+  faqTitle = 'Vos questions sur l\'<span class="text-water">entretien</span> et la <span class="text-water">maintenance</span> des piscines (83)',
+  faqs = [
+    {
+      question: 'Dans quelles villes du Var intervenez-vous pour l\'entretien de piscine ?',
+      answer: 'Aquacare Service intervient principalement dans le Golfe de Saint-Tropez\u00a0: Sainte-Maxime, Plan-de-la-Tour, Grimaud, Cogolin, Saint-Tropez, Ramatuelle, Gassin, Cavalaire et La Croix-Valmer. Nous couvrons également Les Issambres, Saint-Aygulf, Roquebrune-sur-Argens, Puget-sur-Argens, Fréjus, Saint-Raphaël et Le Muy.',
+    },
+    {
+      question: 'Que comprend une visite d\'entretien de piscine ?',
+      answer: 'Chaque passage inclut\u00a0: l\'analyse et le traitement de l\'eau (pH, chlore, TAC), le nettoyage complet du bassin (écumage, aspiration, brossage), l\'entretien du local technique (préfiltre, filtre), un contrôle préventif des équipements et l\'optimisation de la filtration.',
+    },
+    {
+      question: 'Proposez-vous un service de rattrapage pour piscine verte ?',
+      answer: 'Oui, nous intervenons pour rattraper une eau verte ou trouble et remettre votre bassin en état optimal.',
+    },
+    {
+      question: 'Dois-je être présent lors de vos interventions ?',
+      answer: 'Non, nous intervenons de manière discrète et autonome. Un compte-rendu vous est transmis après chaque visite via notre application.',
+    },
+  ],
+} = Astro.props;
 ---
 
 <section class="cta-faq" id="contact">
@@ -29,19 +51,17 @@ const faqs = [
   <div class="cta-faq__layout container">
     <!-- Left: CTA -->
     <div class="cta-faq__cta">
-      <h2 class="cta-faq__title">Vous souhaitez effectuer un diagnostic ou souscrire un contrat d'entretien&nbsp;?</h2>
+      <h2 class="cta-faq__title">{title}</h2>
 
-      <p class="cta-faq__text">
-        Cliquez sur le bouton WhatsApp et envoyez-nous les informations suivantes&nbsp;:
-      </p>
+      <p class="cta-faq__text">{text}</p>
 
       <ul class="cta-faq__list">
-        <li>Nom de la ville</li>
-        <li>Type de piscine concerné</li>
-        <li>Si possible, une photo du local technique</li>
+        {listItems.map((item) => (
+          <li>{item}</li>
+        ))}
       </ul>
 
-      <p class="cta-faq__response">Réponse en 72h, devis clair.</p>
+      <p class="cta-faq__response">{responseText}</p>
 
       <a href="https://wa.me/" class="cta-faq__whatsapp" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
@@ -53,8 +73,8 @@ const faqs = [
 
     <!-- Right: FAQ -->
     <div class="cta-faq__faq" id="faq">
-      <span class="cta-faq__faq-label">FAQ</span>
-      <h2 class="cta-faq__faq-title">Vos questions sur l'<span class="text-water">entretien</span> et la <span class="text-water">maintenance</span> des piscines (83)</h2>
+      <span class="cta-faq__faq-label">{faqLabel}</span>
+      <h2 class="cta-faq__faq-title" set:html={faqTitle} />
 
       <div class="cta-faq__faq-list">
         {faqs.map((faq) => (

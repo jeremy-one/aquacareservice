@@ -1,0 +1,554 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/sections/PageHero.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import CTA from '../components/sections/CTA.astro';
+
+import imgLocal from '../assets/images/local technique/IMG_2759.jpeg';
+import imgPac from '../assets/images/pompe a chaleur/IMG_5833.jpeg';
+
+const title = 'Rénovation & équipements piscine – Golfe de Saint-Tropez | Aquacare';
+const description = 'Diagnostic, rénovation local technique, régulation pH, électrolyse au sel, pompe à chaleur, filtration, solutions connectées.';
+
+const diagnosticPoints = [
+  {
+    icon: 'M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75',
+    title: 'Cohérence filtration / volume / usage',
+    description: 'Votre système est-il adapté à votre bassin et à votre fréquence d\'utilisation\u00a0?',
+  },
+  {
+    icon: 'M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085',
+    title: 'État du local technique',
+    description: 'Détection de fuites, bruits anormaux, usure des pièces, contrôle du débit.',
+  },
+  {
+    icon: 'M12 3C12 3 7 9 7 13a5 5 0 0010 0c0-4-5-10-5-10z',
+    title: 'Qualité et stabilité de l\'eau',
+    description: 'Analyse des paramètres pour comprendre les déséquilibres récurrents.',
+  },
+  {
+    icon: 'M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z',
+    title: 'Recommandations personnalisées',
+    description: 'Solutions concrètes pour réduire les pannes et simplifier l\'entretien.',
+  },
+];
+
+const equipements = [
+  {
+    icon: 'M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75',
+    title: 'Régulation pH automatique',
+    description: 'Fini les à-coups, votre eau reste stable et confortable toute la saison.',
+  },
+  {
+    icon: 'M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5',
+    title: 'Électrolyseur au sel',
+    description: 'Un traitement doux pour la peau, un entretien simplifié au quotidien.',
+  },
+  {
+    icon: 'M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z',
+    title: 'Pompe à chaleur piscine',
+    description: 'Prolongez la saison de baignade avec un chauffage correctement dimensionné.',
+  },
+  {
+    icon: 'M12 3C12 3 7 9 7 13a5 5 0 0010 0c0-4-5-10-5-10z',
+    title: 'Filtration et charge filtrante',
+    description: 'Optimisation hydraulique pour une eau cristalline avec moins d\'effort.',
+  },
+  {
+    icon: 'M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z',
+    title: 'Solutions connectées',
+    description: 'Pilotage et suivi à distance selon votre équipement.',
+  },
+];
+
+const renovationPoints = [
+  'Remise à niveau complète — rationalisation du montage, suppression des éléments inutiles',
+  'Remplacement des pièces défectueuses — vannes, raccords, pompes sous-dimensionnées',
+  'Installation soignée — accès facilité pour l\'entretien, repérage clair des circuits',
+];
+
+const economiesPoints = [
+  {
+    title: 'Détection et réparation des fuites',
+    description: 'Souvent la vraie cause d\'une consommation anormale.',
+  },
+  {
+    title: 'Couverture ou bâche',
+    description: 'Limite l\'évaporation, surtout en période de mistral.',
+  },
+  {
+    title: 'Optimisation des contre-lavages',
+    description: 'Un gain secondaire, mais réel avec une charge filtrante adaptée.',
+  },
+];
+---
+
+<BaseLayout title={title} description={description} darkHero>
+  <!-- Hero -->
+  <PageHero
+    title="Rénovation et modernisation de piscine dans le Golfe de Saint-Tropez"
+    subtitle="Équipements obsolètes, réglages approximatifs, pannes récurrentes… Nous diagnostiquons, conseillons et modernisons votre installation pour retrouver sérénité et fiabilité."
+    ctaText="Contacter Aquacare Service"
+    ctaHref="https://wa.me/"
+  />
+
+  <!-- Section Diagnostic -->
+  <section class="reno-diag">
+    <div class="reno-diag__container container">
+      <SectionHeader
+        label="Diagnostic"
+        title="Ce que nous <span class='text-water'>vérifions</span> avant le début de la saison"
+        subtitle="Avant toute intervention, nous analysons votre installation pour identifier les points faibles et les axes d'amélioration."
+      />
+
+      <div class="reno-diag__grid">
+        {diagnosticPoints.map((point, i) => (
+          <div class="reno-diag__card">
+            <div class="reno-diag__card-number">0{i + 1}</div>
+            <div class="reno-diag__card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
+                <path d={point.icon} stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="reno-diag__card-title">{point.title}</h3>
+            <p class="reno-diag__card-desc">{point.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Équipements -->
+  <section class="reno-equip">
+    <div class="reno-equip__container container">
+      <SectionHeader
+        label="Équipements"
+        title="Modernisez votre piscine avec des <span class='text-water'>équipements fiables</span>"
+        subtitle="Nous sélectionnons et installons des équipements adaptés aux piscines du Var, avec un dimensionnement précis et des réglages optimisés."
+      />
+
+      <div class="reno-equip__grid">
+        {equipements.map((equip) => (
+          <div class="reno-equip__card">
+            <div class="reno-equip__card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
+                <path d={equip.icon} stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="reno-equip__card-title">{equip.title}</h3>
+            <p class="reno-equip__card-desc">{equip.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="reno-equip__cta">
+        <a href="/contact" class="btn btn--primary">
+          <span>Demander un devis</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Local technique -->
+  <section class="reno-local">
+    <div class="reno-local__layout">
+      <div class="reno-local__content">
+        <SectionHeader
+          label="Local technique"
+          title="Rénovation de local technique"
+          align="left"
+        />
+        <p class="reno-local__intro">
+          Les locaux techniques vieillissants deviennent souvent un casse-tête&nbsp;: tuyauterie anarchique, vannes difficiles d'accès, repérage inexistant. Nous remettons de l'ordre.
+        </p>
+
+        <ul class="reno-local__list">
+          {renovationPoints.map((point) => (
+            <li>{point}</li>
+          ))}
+        </ul>
+
+        <p class="reno-local__note">
+          Coordination possible avec votre maçon ou artisan si des travaux complémentaires sont nécessaires.
+        </p>
+      </div>
+
+      <div class="reno-local__image-col">
+        <img src={imgLocal.src} alt="Local technique piscine rénové par Aquacare Service" class="reno-local__image" loading="lazy" decoding="async" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Économies d'eau -->
+  <section class="reno-eco">
+    <div class="reno-eco__container container">
+      <SectionHeader
+        label="Économies"
+        title="Faire des <span class='text-water'>économies d'eau</span>&nbsp;: ce qui fonctionne vraiment"
+        subtitle="Beaucoup de promesses circulent sur les économies d'eau en piscine. Voici ce qui fait la différence."
+      />
+
+      <div class="reno-eco__grid">
+        {economiesPoints.map((point, i) => (
+          <div class="reno-eco__card">
+            <span class="reno-eco__card-number">0{i + 1}</span>
+            <h3 class="reno-eco__card-title">{point.title}</h3>
+            <p class="reno-eco__card-desc">{point.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA + FAQ -->
+  <CTA
+    title="Vous souhaitez planifier un diagnostic de votre piscine ?"
+    text="Cliquez sur le bouton WhatsApp et envoyez-nous les informations suivantes :"
+    listItems={[
+      'Nom de la ville',
+      'Une photo du local technique',
+      'Quelques lignes sur votre objectif (confort / sel / chauffage / pH)',
+    ]}
+    faqTitle="Vos questions sur la <span class='text-water'>rénovation</span> des piscines (83)"
+    faqs={[
+      {
+        question: 'Comment réduire la consommation d\'eau de ma piscine dans le Var ?',
+        answer: 'Les économies d\'eau reposent sur trois leviers\u00a0: la détection et réparation des fuites (souvent la première cause de surconsommation), l\'installation d\'une couverture ou bâche (efficace contre le mistral), et l\'optimisation des contre-lavages avec une charge filtrante adaptée.',
+      },
+      {
+        question: 'Qu\'est-ce qu\'un électrolyseur au sel et quels sont ses avantages ?',
+        answer: 'L\'électrolyseur au sel transforme le sel dissous dans l\'eau en chlore naturel par électrolyse. Ce procédé offre une eau plus douce et confortable pour la peau et les yeux, et simplifie l\'entretien au quotidien.',
+      },
+      {
+        question: 'Pourquoi mon local technique nécessite-t-il une rénovation ?',
+        answer: 'Les locaux techniques vieillissants posent des problèmes\u00a0: tuyauterie désorganisée, vannes inaccessibles ou grippées, circuits mal identifiés, équipements sous-dimensionnés. Ces défauts compliquent l\'entretien et augmentent les risques de panne.',
+      },
+    ]}
+  />
+</BaseLayout>
+
+<style>
+  /* ═══════════════════════════════════════════
+     DIAGNOSTIC
+     ═══════════════════════════════════════════ */
+  .reno-diag {
+    padding-block: var(--section-gap);
+    background: var(--color-light);
+  }
+
+  .reno-diag__container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .reno-diag__grid {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 768px) {
+    .reno-diag__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .reno-diag__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(14, 165, 233, 0.1);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s ease;
+  }
+
+  .reno-diag__card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .reno-diag__card-number {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: var(--font-bold);
+    color: var(--color-gray-300);
+  }
+
+  .reno-diag__card-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    border-radius: var(--radius-lg);
+  }
+
+  .reno-diag__card-title {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    color: var(--color-dark);
+  }
+
+  .reno-diag__card-desc {
+    font-size: var(--text-sm);
+    color: var(--color-gray-600);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ═══════════════════════════════════════════
+     EQUIPEMENTS
+     ═══════════════════════════════════════════ */
+  .reno-equip {
+    padding-block: var(--section-gap);
+    background: var(--color-white);
+  }
+
+  .reno-equip__container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  .reno-equip__grid {
+    display: grid;
+    gap: var(--space-6);
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .reno-equip__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .reno-equip__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .reno-equip__card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    background: rgba(14, 165, 233, 0.04);
+    border: 1px solid rgba(14, 165, 233, 0.1);
+    border-radius: var(--radius-xl);
+    transition: border-color 0.3s ease, transform 0.3s var(--ease-out-expo);
+  }
+
+  .reno-equip__card:hover {
+    border-color: rgba(14, 165, 233, 0.3);
+    transform: translateY(-3px);
+  }
+
+  .reno-equip__card-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    border-radius: var(--radius-lg);
+  }
+
+  .reno-equip__card-title {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    color: var(--color-dark);
+  }
+
+  .reno-equip__card-desc {
+    font-size: var(--text-sm);
+    color: var(--color-gray-600);
+    line-height: var(--leading-relaxed);
+  }
+
+  .reno-equip__cta {
+    margin-top: var(--space-4);
+  }
+
+  /* ═══════════════════════════════════════════
+     LOCAL TECHNIQUE - Zone-style layout
+     ═══════════════════════════════════════════ */
+  .reno-local {
+    padding-block: var(--section-gap);
+    background: var(--color-dark);
+    position: relative;
+  }
+
+  .reno-local::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(100deg, transparent 0%, rgba(14, 165, 233, 0.03) 10%, transparent 20%),
+      repeating-linear-gradient(80deg, transparent 0%, rgba(14, 165, 233, 0.02) 15%, transparent 30%);
+    pointer-events: none;
+  }
+
+  .reno-local__layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (min-width: 1024px) {
+    .reno-local__layout {
+      grid-template-columns: 1fr 420px;
+      gap: 0;
+      align-items: center;
+    }
+  }
+
+  .reno-local__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    padding-inline: var(--container-padding);
+    max-width: var(--container-max);
+  }
+
+  @media (min-width: 1024px) {
+    .reno-local__content {
+      padding-left: max(var(--container-padding), calc((100vw - var(--container-max)) / 2 + var(--container-padding)));
+      padding-right: var(--space-12);
+    }
+  }
+
+  .reno-local__content :global(.section-header__title) {
+    color: var(--color-white);
+  }
+
+  .reno-local__intro {
+    font-size: var(--text-base);
+    color: rgba(255, 255, 255, 0.8);
+    line-height: var(--leading-relaxed);
+  }
+
+  .reno-local__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .reno-local__list li {
+    font-size: var(--text-base);
+    color: rgba(255, 255, 255, 0.8);
+    padding-left: var(--space-6);
+    position: relative;
+    line-height: var(--leading-relaxed);
+  }
+
+  .reno-local__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 8px;
+    height: 8px;
+    background: var(--color-primary);
+    border-radius: 50%;
+  }
+
+  .reno-local__note {
+    font-size: var(--text-sm);
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: var(--leading-relaxed);
+  }
+
+  .reno-local__image-col {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .reno-local__image-col {
+      display: block;
+      height: 100%;
+      min-height: 500px;
+    }
+  }
+
+  .reno-local__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-2xl) 0 0 var(--radius-2xl);
+  }
+
+  /* ═══════════════════════════════════════════
+     ECONOMIES D'EAU
+     ═══════════════════════════════════════════ */
+  .reno-eco {
+    padding-block: var(--section-gap);
+    background: var(--color-light);
+  }
+
+  .reno-eco__container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .reno-eco__grid {
+    display: grid;
+    gap: var(--space-6);
+    max-width: 900px;
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .reno-eco__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .reno-eco__card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(14, 165, 233, 0.1);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+  }
+
+  .reno-eco__card-number {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+    opacity: 0.3;
+    line-height: 1;
+  }
+
+  .reno-eco__card-title {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    color: var(--color-dark);
+  }
+
+  .reno-eco__card-desc {
+    font-size: var(--text-sm);
+    color: var(--color-gray-600);
+    line-height: var(--leading-relaxed);
+  }
+</style>

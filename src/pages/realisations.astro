@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/sections/PageHero.astro';
+
+// Rattrapage eau verte images
+import imgVerte1 from '../assets/images/Avant Après/rattrapage eau verte/IMG_0948.JPG';
+import imgVerte2 from '../assets/images/Avant Après/rattrapage eau verte/IMG_1066.JPG';
+import imgVerte3 from '../assets/images/Avant Après/rattrapage eau verte/IMG_1115.JPG';
+import imgEauVerte1 from '../assets/images/Avant Après/eau verte/IMG_4740.jpeg';
+import imgEauVerte2 from '../assets/images/Avant Après/eau verte/IMG_4784.jpeg';
+
+// Local technique images
+import imgLocal1 from '../assets/images/local technique/IMG_2759.jpeg';
+import imgLocal2 from '../assets/images/local technique/IMG_2312.jpeg';
+import imgLocal3 from '../assets/images/local technique/72474eac-27b7-4989-ab7d-d4a4538d5fa7.jpg';
+
+// Pompe à chaleur / équipements images
+import imgPac1 from '../assets/images/pompe a chaleur/IMG_0118.jpeg';
+import imgPac2 from '../assets/images/pompe a chaleur/IMG_5833.jpeg';
+import imgPac3 from '../assets/images/pompe a chaleur/IMG_2771.jpeg';
+
+// Divers
+import imgDivers1 from '../assets/images/Divers piscine/IMG_4695.jpeg';
+import imgDivers2 from '../assets/images/Divers piscine/IMG_5136.jpeg';
+
+const title = 'Réalisations entretien & rénovation piscine – Golfe de Saint-Tropez | Aquacare';
+const description = 'Avant/après rattrapage piscine verte, rénovation local technique, installations régulation pH, électrolyse, chauffage.';
+
+const realisations = [
+  {
+    title: 'Rattrapage "piscine verte"',
+    description: 'Diagnostic complet, traitement adapté, remise au clair et nettoyage en profondeur.',
+    images: [
+      { src: imgVerte1.src, alt: 'Piscine verte avant traitement' },
+      { src: imgVerte2.src, alt: 'Piscine après rattrapage eau verte' },
+      { src: imgVerte3.src, alt: 'Eau cristalline après intervention Aquacare' },
+      { src: imgEauVerte1.src, alt: 'Rattrapage eau verte piscine Var' },
+      { src: imgEauVerte2.src, alt: 'Piscine propre après traitement eau verte' },
+    ],
+  },
+  {
+    title: 'Rénovation local technique',
+    description: 'Bruit, fuite, manque de débit, montage vieillissant — rénovation complète, remplacement et optimisation.',
+    images: [
+      { src: imgLocal1.src, alt: 'Local technique piscine rénové' },
+      { src: imgLocal2.src, alt: 'Rénovation local technique piscine' },
+      { src: imgLocal3.src, alt: 'Local technique après intervention' },
+    ],
+  },
+  {
+    title: 'Régulation pH / électrolyse au sel',
+    description: 'Eau stable, confort au quotidien, entretien simplifié grâce à l\'automatisation.',
+    images: [
+      { src: imgPac1.src, alt: 'Installation régulation pH piscine' },
+      { src: imgPac2.src, alt: 'Électrolyseur au sel piscine' },
+      { src: imgDivers1.src, alt: 'Piscine avec équipements automatisés' },
+    ],
+  },
+  {
+    title: 'Chauffage / pompe à chaleur',
+    description: 'Allonger la saison de baignade et gagner en confort avec un chauffage correctement dimensionné.',
+    images: [
+      { src: imgPac3.src, alt: 'Installation pompe à chaleur piscine' },
+      { src: imgDivers2.src, alt: 'Piscine chauffée dans le Var' },
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description} darkHero>
+  <!-- Hero -->
+  <PageHero
+    title="Avant / Après : des résultats concrets"
+    subtitle="Ici, pas de promesses vagues : des photos, un contexte, et ce qui a été fait."
+  />
+
+  <!-- Galerie de réalisations -->
+  <section class="real-gallery">
+    <div class="real-gallery__container container">
+      {realisations.map((real, index) => (
+        <article class="real-block">
+          <div class="real-block__header">
+            <span class="real-block__number">0{index + 1}</span>
+            <div>
+              <h2 class="real-block__title">{real.title}</h2>
+              <p class="real-block__desc">{real.description}</p>
+            </div>
+          </div>
+
+          <div class="real-block__grid" style={`--cols: ${Math.min(real.images.length, 3)}`}>
+            {real.images.map((img) => (
+              <div class="real-block__image-wrapper">
+                <img src={img.src} alt={img.alt} class="real-block__image" loading="lazy" decoding="async" />
+              </div>
+            ))}
+          </div>
+        </article>
+      ))}
+
+      <div class="real-gallery__cta">
+        <a href="/contact" class="btn btn--primary btn--lg">
+          <span>Demander un devis</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .real-gallery {
+    padding-block: var(--section-gap);
+    background: var(--color-light);
+  }
+
+  .real-gallery__container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-20);
+  }
+
+  .real-gallery__cta {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Block */
+  .real-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .real-block__header {
+    display: flex;
+    gap: var(--space-5);
+    align-items: flex-start;
+  }
+
+  .real-block__number {
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+    opacity: 0.3;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .real-block__title {
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    font-weight: var(--font-bold);
+    color: var(--color-dark);
+    margin-bottom: var(--space-2);
+  }
+
+  .real-block__desc {
+    font-size: var(--text-base);
+    color: var(--color-gray-600);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Image grid */
+  .real-block__grid {
+    display: grid;
+    gap: var(--space-6);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .real-block__grid {
+      grid-template-columns: repeat(var(--cols, 3), 1fr);
+    }
+  }
+
+  .real-block__image-wrapper {
+    position: relative;
+    aspect-ratio: 4/3;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    border: 2px dashed var(--color-gray-300);
+    padding: 6px;
+    transition: border-color 0.3s ease;
+  }
+
+  .real-block__image-wrapper:hover {
+    border-color: var(--color-primary);
+  }
+
+  .real-block__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: calc(var(--radius-2xl) - 6px);
+    display: block;
+    transition: transform 0.4s var(--ease-out-expo);
+  }
+
+  .real-block__image-wrapper:hover .real-block__image {
+    transform: scale(1.05);
+  }
+</style>
