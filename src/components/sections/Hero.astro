@@ -125,19 +125,6 @@ import doneIcon from '../../assets/icons/done.svg';
     ))}
   </div>
 
-  <!-- Pronounced light rays (god rays) - Left side -->
-  <div class="hero__light hero__light--left">
-    <div class="hero__light-ray hero__light-ray--1"></div>
-    <div class="hero__light-ray hero__light-ray--2"></div>
-    <div class="hero__light-ray hero__light-ray--3"></div>
-  </div>
-
-  <!-- Light rays - Right side -->
-  <div class="hero__light hero__light--right">
-    <div class="hero__light-ray hero__light-ray--r1"></div>
-    <div class="hero__light-ray hero__light-ray--r2"></div>
-  </div>
-
   <!-- Content -->
   <div class="hero__content" id="heroContent">
     <div class="hero__inner container">
@@ -451,138 +438,6 @@ import doneIcon from '../../assets/icons/done.svg';
   }
 
   /* ═══════════════════════════════════════════
-     LIGHT RAYS - Concentrated God Rays (from top-left)
-     ═══════════════════════════════════════════ */
-  .hero__light {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  .hero__light-ray {
-    position: absolute;
-    top: -30%;
-    height: 160%;
-    background: linear-gradient(180deg,
-      rgba(255, 255, 255, 0.6) 0%,
-      rgba(255, 255, 255, 0.35) 25%,
-      rgba(255, 255, 255, 0.15) 55%,
-      transparent 90%
-    );
-    transform-origin: top left;
-    /* All rays same direction ~25deg */
-    transform: rotate(25deg);
-  }
-
-  /* Main ray - sharpest, brightest */
-  .hero__light-ray--1 {
-    left: -5%;
-    width: 280px;
-    opacity: 0.7;
-    filter: blur(2px);
-    animation: godRayMain 10s ease-in-out infinite;
-  }
-
-  /* Secondary ray - slightly blurred */
-  .hero__light-ray--2 {
-    left: 8%;
-    width: 200px;
-    opacity: 0.5;
-    filter: blur(5px);
-    animation: godRayMain 12s ease-in-out infinite 2s;
-  }
-
-  /* Third ray - more blurred, softer */
-  .hero__light-ray--3 {
-    left: 18%;
-    width: 320px;
-    opacity: 0.4;
-    filter: blur(8px);
-    animation: godRayMain 14s ease-in-out infinite 1s;
-  }
-
-  /* ═══════════════════════════════════════════
-     RIGHT SIDE RAYS - Same direction, different positions
-     ═══════════════════════════════════════════ */
-  .hero__light--right {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  .hero__light--right .hero__light-ray {
-    position: absolute;
-    top: -30%;
-    height: 160%;
-    background: linear-gradient(180deg,
-      rgba(255, 255, 255, 0.5) 0%,
-      rgba(255, 255, 255, 0.3) 25%,
-      rgba(255, 255, 255, 0.12) 55%,
-      transparent 90%
-    );
-    transform-origin: top left;
-    transform: rotate(25deg);
-  }
-
-  /* Right main ray */
-  .hero__light-ray--r1 {
-    left: 70%;
-    width: 220px;
-    opacity: 0.55;
-    filter: blur(4px);
-    animation: godRayRight 11s ease-in-out infinite;
-  }
-
-  /* Right secondary ray */
-  .hero__light-ray--r2 {
-    left: 80%;
-    width: 180px;
-    opacity: 0.4;
-    filter: blur(7px);
-    animation: godRayRight 13s ease-in-out infinite 1.5s;
-  }
-
-  @keyframes godRayRight {
-    0%, 100% {
-      transform: rotate(25deg) scaleY(1);
-      opacity: var(--ray-opacity, 0.4);
-    }
-    35% {
-      transform: rotate(23deg) scaleY(1.04);
-      opacity: calc(var(--ray-opacity, 0.4) * 1.25);
-    }
-    65% {
-      transform: rotate(26deg) scaleY(0.97);
-      opacity: calc(var(--ray-opacity, 0.4) * 0.85);
-    }
-  }
-
-  @keyframes godRayMain {
-    0%, 100% {
-      transform: rotate(25deg) scaleY(1);
-      opacity: var(--ray-opacity, 0.5);
-    }
-    30% {
-      transform: rotate(22deg) scaleY(1.05);
-      opacity: calc(var(--ray-opacity, 0.5) * 1.3);
-    }
-    60% {
-      transform: rotate(27deg) scaleY(0.98);
-      opacity: calc(var(--ray-opacity, 0.5) * 0.9);
-    }
-  }
-
-  /* ═══════════════════════════════════════════
      CONTENT
      ═══════════════════════════════════════════ */
   .hero__content {
@@ -651,7 +506,7 @@ import doneIcon from '../../assets/icons/done.svg';
   }
 
   .hero__title-line--accent {
-    background: linear-gradient(135deg, #0EA5E9 0%, #38BDF8 100%);
+    background: linear-gradient(135deg, #0284C7 0%, #0EA5E9 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -1011,17 +866,6 @@ import doneIcon from '../../assets/icons/done.svg';
       },
     });
 
-    // Light rays fade
-    gsap.to(['.hero__light--left', '.hero__light--right'], {
-      opacity: 0,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: hero,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true,
-      },
-    });
 
     // Surface top: slight downward parallax
     gsap.to('.hero__surface-top', {
