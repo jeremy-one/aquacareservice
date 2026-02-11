@@ -245,7 +245,6 @@ import doneIcon from '../../assets/icons/done.svg';
     mix-blend-mode: luminosity;
     filter: url(#underwater-distortion);
     transform: rotate(347deg) scale(1.2);
-    will-change: filter;
     backface-visibility: hidden;
   }
 
@@ -595,9 +594,7 @@ import doneIcon from '../../assets/icons/done.svg';
     justify-content: center;
     padding-top: 0;
     padding-bottom: var(--space-16);
-    will-change: transform, filter, opacity;
-    transition: filter 0.1s ease-out;
-    backdrop-filter: hue-rotate(24deg);
+    will-change: transform, opacity;
   }
 
   .hero__inner {
@@ -978,82 +975,74 @@ import doneIcon from '../../assets/icons/done.svg';
 </style>
 
 <script>
-  // Elements
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const hero = document.getElementById('hero');
   const heroContent = document.getElementById('heroContent');
-  const bubbles = document.querySelector('.hero__bubbles') as HTMLElement;
-  const lightRaysLeft = document.querySelector('.hero__light--left') as HTMLElement;
-  const lightRaysRight = document.querySelector('.hero__light--right') as HTMLElement;
-  const surfaceTop = document.querySelector('.hero__surface-top') as HTMLElement;
   const scrollIndicator = document.querySelector('.hero__scroll') as HTMLElement;
 
-  let ticking = false;
+  if (hero && heroContent) {
+    // Main hero content: parallax + fade + scale (no blur — too expensive per frame)
+    gsap.to(heroContent, {
+      yPercent: 30,
+      opacity: 0,
+      scale: 0.92,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: hero,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
 
-  // Scroll effect - blur & parallax for immersion
-  function onScroll() {
-    const scrollY = window.scrollY;
-    const viewportHeight = window.innerHeight;
-    const scrollProgress = Math.min(scrollY / (viewportHeight * 0.7), 1);
-
-    // Hide scroll indicator when scrolling
-    if (scrollIndicator) {
-      if (scrollY > 100) {
-        scrollIndicator.classList.add('hidden');
-      } else {
-        scrollIndicator.classList.remove('hidden');
-      }
-    }
-
-    if (heroContent) {
-      // Parallax movement
-      const parallaxY = scrollY * 0.4;
-      // Blur increases as you scroll (like emerging from water)
-      const blurAmount = scrollProgress * 15;
-      // Fade out
-      const opacity = 1 - scrollProgress;
-      // Slight scale
-      const scale = 1 - scrollProgress * 0.1;
-
-      heroContent.style.transform = `translateY(${parallaxY}px) scale(${scale})`;
-      heroContent.style.filter = `blur(${blurAmount}px)`;
-      heroContent.style.opacity = opacity.toString();
-    }
-
-    // Bubbles fade
-    if (bubbles) {
-      const bubblesOpacity = 1 - scrollProgress * 1.2;
-      bubbles.style.opacity = Math.max(0, bubblesOpacity).toString();
-    }
+    // Bubbles fade out faster
+    gsap.to('.hero__bubbles', {
+      opacity: 0,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: hero,
+        start: 'top top',
+        end: '60% top',
+        scrub: true,
+      },
+    });
 
     // Light rays fade
-    if (lightRaysLeft) {
-      const raysOpacity = 1 - scrollProgress;
-      lightRaysLeft.style.opacity = raysOpacity.toString();
-    }
-    if (lightRaysRight) {
-      const raysOpacity = 1 - scrollProgress;
-      lightRaysRight.style.opacity = raysOpacity.toString();
-    }
+    gsap.to(['.hero__light--left', '.hero__light--right'], {
+      opacity: 0,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: hero,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
 
-    // Surface moves down slightly
-    if (surfaceTop) {
-      const surfaceY = scrollProgress * 30;
-      surfaceTop.style.transform = `translateY(${surfaceY}px)`;
-    }
+    // Surface top: slight downward parallax
+    gsap.to('.hero__surface-top', {
+      y: 30,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: hero,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
   }
 
-  // Throttled scroll listener
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        onScroll();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
-
-  // Initial state
-  onScroll();
-
-
+  // Scroll indicator: hide after 100px
+  if (scrollIndicator) {
+    ScrollTrigger.create({
+      trigger: hero,
+      start: '100px top',
+      onEnter: () => scrollIndicator.classList.add('hidden'),
+      onLeaveBack: () => scrollIndicator.classList.remove('hidden'),
+    });
+  }
 </script>
