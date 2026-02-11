@@ -1,19 +1,23 @@
 ---
+import imgRattrapage from '../../assets/images/Avant Après/rattrapage eau verte/IMG_1066.JPG';
+import imgLocal from '../../assets/images/local technique/IMG_2759.jpeg';
+import imgPac from '../../assets/images/pompe a chaleur/IMG_5833.jpeg';
+
 const results = [
   {
     title: 'Rattrapage "piscine verte"',
-    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&h=675&fit=crop&q=80',
-    alt: 'Piscine cristalline après rattrapage eau verte',
+    image: imgRattrapage,
+    alt: 'Piscine cristalline après rattrapage eau verte par Aquacare Service',
   },
   {
     title: 'Local technique rénové',
-    image: 'https://images.unsplash.com/photo-1650551182991-b07558247564?w=900&h=675&fit=crop&q=80',
-    alt: 'Local technique piscine rénové et organisé',
+    image: imgLocal,
+    alt: 'Local technique piscine rénové et organisé par Aquacare Service',
   },
   {
-    title: 'Installation régulation pH / électrolyse au sel / chauffage',
-    image: 'https://images.unsplash.com/photo-1650551182956-47efa0f90b64?w=900&h=675&fit=crop&q=80',
-    alt: 'Installation équipements régulation et chauffage piscine',
+    title: 'Installation pompe à chaleur',
+    image: imgPac,
+    alt: 'Installation pompe à chaleur piscine par Aquacare Service',
   },
 ];
 ---
@@ -27,7 +31,7 @@ const results = [
       {results.map((result) => (
         <div class="gallery__item">
           <div class="gallery__image-wrapper">
-            <img src={result.image} alt={result.alt} class="gallery__image" loading="lazy" />
+            <img src={result.image.src} alt={result.alt} class="gallery__image" loading="lazy" />
           </div>
           <p class="gallery__item-title">{result.title}</p>
         </div>

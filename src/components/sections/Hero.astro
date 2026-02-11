@@ -928,21 +928,21 @@ import doneIcon from '../../assets/icons/done.svg';
     height: 100%;
   }
 
-  /* Front wave - white */
+  /* Front wave - bridges to --color-light (#EDF7FA) */
   .hero__wave-bottom--1 {
-    fill: #add8f5;
+    fill: var(--color-light);
     animation: bottomWave1 7s ease-in-out infinite;
   }
 
-  /* Mid wave - light turquoise */
+  /* Mid wave - soft tint between hero and light */
   .hero__wave-bottom--2 {
-    fill: rgba(56, 189, 248, 0.85);
+    fill: rgba(173, 216, 230, 0.6);
     animation: bottomWave2 9s ease-in-out infinite;
   }
 
-  /* Back wave - more saturated teal */
+  /* Back wave - closer to hero color */
   .hero__wave-bottom--3 {
-    fill: rgba(14, 165, 233, 0.65);
+    fill: rgba(90, 195, 195, 0.4);
     animation: bottomWave3 11s ease-in-out infinite;
   }
 

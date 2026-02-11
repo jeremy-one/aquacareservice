@@ -20,11 +20,6 @@ const faqs = [
 ---
 
 <section class="faq" id="faq">
-  <div class="faq__wave">
-    <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-      <path d="M0,50 C360,100 1080,0 1440,50 L1440,100 L0,100 Z"/>
-    </svg>
-  </div>
   <div class="faq__container container">
     <span class="faq__label">FAQ</span>
     <h2 class="faq__title">Vos questions sur l'<span class="text-water">entretien</span> et la <span class="text-water">maintenance</span> des piscines (83)</h2>
@@ -52,26 +47,7 @@ const faqs = [
     position: relative;
     padding-block: var(--section-gap);
     background: var(--color-dark);
-  }
-
-  .faq__wave {
-    position: absolute;
-    top: -49px;
-    left: 0;
-    right: 0;
-    height: 50px;
-    pointer-events: none;
-    z-index: 2;
-  }
-
-  .faq__wave svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-
-  .faq__wave path {
-    fill: var(--color-dark);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .faq__container {
