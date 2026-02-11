@@ -31,7 +31,7 @@ const results = [
       {results.map((result) => (
         <div class="gallery__item">
           <div class="gallery__image-wrapper">
-            <img src={result.image.src} alt={result.alt} class="gallery__image" loading="lazy" />
+            <img src={result.image.src} alt={result.alt} class="gallery__image" loading="lazy" decoding="async" />
           </div>
           <p class="gallery__item-title">{result.title}</p>
         </div>

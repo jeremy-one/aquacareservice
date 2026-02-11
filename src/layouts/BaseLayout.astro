@@ -55,6 +55,7 @@ const siteUrl = 'https://aquacareservice.fr';
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
 
   <!-- Geo -->
   <meta name="geo.region" content="FR-83" />
@@ -67,8 +68,25 @@ const siteUrl = 'https://aquacareservice.fr';
     "name": "Aquacare Service",
     "description": description,
     "url": siteUrl,
-    "areaServed": "Var, France",
-    "serviceType": ["Construction de piscines", "Entretien de piscines", "Rénovation de piscines"]
+    "telephone": "+33XXXXXXXXX",
+    "email": "contact@aquacareservice.fr",
+    "image": `${siteUrl}/logo-long.svg`,
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "Var",
+      "addressCountry": "FR"
+    },
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 43.2727,
+        "longitude": 6.6406
+      },
+      "geoRadius": "40000"
+    },
+    "serviceType": ["Entretien de piscines", "Rénovation de piscines", "Équipements piscine"],
+    "priceRange": "$$"
   })} />
 
 </head>

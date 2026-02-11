@@ -257,8 +257,14 @@ import doneIcon from '../../assets/icons/done.svg';
     top: 0;
     left: 0;
     width: 100%;
-    height: 180px;
+    height: 80px;
     z-index: 5;
+  }
+
+  @media (min-width: 768px) {
+    .hero__surface-top {
+      height: 180px;
+    }
   }
 
   .hero__surface-top svg {
@@ -444,12 +450,20 @@ import doneIcon from '../../assets/icons/done.svg';
     position: relative;
     z-index: 10;
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 0;
-    padding-bottom: var(--space-16);
+    padding-top: 80px;
+    padding-bottom: var(--space-10);
     will-change: transform, opacity;
+  }
+
+  @media (min-width: 768px) {
+    .hero__content {
+      padding-top: 100px;
+      padding-bottom: var(--space-16);
+    }
   }
 
   .hero__inner {
@@ -457,18 +471,34 @@ import doneIcon from '../../assets/icons/done.svg';
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: var(--space-6);
+    gap: var(--space-4);
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .hero__inner {
+      gap: var(--space-6);
+    }
   }
 
   /* SEO Heading */
   .hero__heading {
-    font-size: var(--text-2xl);
+    font-size: var(--text-sm);
     font-weight: var(--font-bold);
     color: var(--color-dark);
     text-align: center;
     line-height: 1.4;
+    max-width: 100%;
+    padding-inline: var(--space-2);
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards 0.3s;
+  }
+
+  @media (min-width: 768px) {
+    .hero__heading {
+      font-size: var(--text-2xl);
+    }
   }
 
   /* Title */
@@ -476,7 +506,7 @@ import doneIcon from '../../assets/icons/done.svg';
     display: flex;
     flex-direction: column;
     gap: 0;
-    font-size: clamp(2.5rem, 10vw, 7rem);
+    font-size: clamp(2rem, 10vw, 7rem);
   }
 
   @media (min-width: 768px) {
@@ -487,7 +517,7 @@ import doneIcon from '../../assets/icons/done.svg';
 
   .hero__title-line {
     font-family: var(--font-display);
-    font-size: clamp(2.5rem, 10vw, 7rem);
+    font-size: clamp(2rem, 10vw, 7rem);
     font-weight: var(--font-extrabold);
     line-height: 1;
     letter-spacing: -0.03em;
@@ -521,7 +551,7 @@ import doneIcon from '../../assets/icons/done.svg';
 
   /* Subtitle */
   .hero__subtitle {
-    font-size: var(--text-base);
+    font-size: var(--text-sm);
     color: var(--color-dark);
     max-width: 580px;
     line-height: 1.6;
@@ -529,15 +559,32 @@ import doneIcon from '../../assets/icons/done.svg';
     animation: fadeInUp 0.8s ease forwards 0.8s;
   }
 
+  @media (min-width: 768px) {
+    .hero__subtitle {
+      font-size: var(--text-base);
+    }
+  }
+
   /* CTA */
   .hero__cta {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-4);
-    margin-top: var(--space-4);
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: var(--space-3);
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards 1s;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .hero__cta {
+      flex-direction: row;
+      justify-content: center;
+      gap: var(--space-4);
+      margin-top: var(--space-4);
+      width: auto;
+    }
   }
 
   .hero__cta-primary {
@@ -545,7 +592,8 @@ import doneIcon from '../../assets/icons/done.svg';
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    padding: var(--space-4) var(--space-6);
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--text-sm);
     background: linear-gradient(
       135deg,
       rgba(30, 41, 59, 0.95) 0%,
@@ -614,7 +662,8 @@ import doneIcon from '../../assets/icons/done.svg';
     position: relative;
     display: inline-flex;
     align-items: center;
-    padding: var(--space-4) var(--space-6);
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--text-sm);
     background: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -666,22 +715,28 @@ import doneIcon from '../../assets/icons/done.svg';
     transform: translateY(-1px) scale(0.98);
   }
 
-  /* Scroll indicator - fixed position from viewport bottom */
+  /* Scroll indicator - hidden on mobile, fixed on desktop */
   .hero__scroll {
-    position: fixed;
-    bottom: 30px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-2);
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards 1.2s;
-    z-index: 100;
-    transition: opacity 0.3s ease;
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .hero__scroll {
+      position: fixed;
+      bottom: 30px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      width: fit-content;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards 1.2s;
+      z-index: 100;
+      transition: opacity 0.3s ease;
+    }
   }
 
   .hero__scroll.hidden {
@@ -731,20 +786,28 @@ import doneIcon from '../../assets/icons/done.svg';
      ═══════════════════════════════════════════ */
   .hero__stats {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-3);
+    flex-direction: column;
+    gap: var(--space-2);
     max-width: 535px;
     margin-top: var(--space-2);
     background: rgba(0, 80, 120, 0.35);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    padding: var(--space-4) var(--space-5);
+    padding: var(--space-3) var(--space-4);
     border-radius: var(--radius-xl);
     border: 1px solid rgba(255, 255, 255, 0.15);
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards 1.2s;
+  }
+
+  @media (min-width: 768px) {
+    .hero__stats {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-3);
+      padding: var(--space-4) var(--space-5);
+    }
   }
 
   .hero__stat {
@@ -774,8 +837,14 @@ import doneIcon from '../../assets/icons/done.svg';
     bottom: -1px;
     left: 0;
     width: 100%;
-    height: 150px;
+    height: 80px;
     z-index: 15;
+  }
+
+  @media (min-width: 768px) {
+    .hero__wave-bottom {
+      height: 150px;
+    }
   }
 
   .hero__wave-bottom svg {
