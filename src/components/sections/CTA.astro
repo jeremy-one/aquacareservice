@@ -1,46 +1,88 @@
 ---
+const faqs = [
+  {
+    question: 'Dans quelles villes du Var intervenez-vous pour l\'entretien de piscine ?',
+    answer: 'Aquacare Service intervient principalement dans le Golfe de Saint-Tropez\u00a0: Sainte-Maxime, Plan-de-la-Tour, Grimaud, Cogolin, Saint-Tropez, Ramatuelle, Gassin, Cavalaire et La Croix-Valmer. Nous couvrons également Les Issambres, Saint-Aygulf, Roquebrune-sur-Argens, Puget-sur-Argens, Fréjus, Saint-Raphaël et Le Muy.',
+  },
+  {
+    question: 'Que comprend une visite d\'entretien de piscine ?',
+    answer: 'Chaque passage inclut\u00a0: l\'analyse et le traitement de l\'eau (pH, chlore, TAC), le nettoyage complet du bassin (écumage, aspiration, brossage), l\'entretien du local technique (préfiltre, filtre), un contrôle préventif des équipements et l\'optimisation de la filtration.',
+  },
+  {
+    question: 'Proposez-vous un service de rattrapage pour piscine verte ?',
+    answer: 'Oui, nous intervenons pour rattraper une eau verte ou trouble et remettre votre bassin en état optimal.',
+  },
+  {
+    question: 'Dois-je être présent lors de vos interventions ?',
+    answer: 'Non, nous intervenons de manière discrète et autonome. Un compte-rendu vous est transmis après chaque visite via notre application.',
+  },
+];
 ---
 
-<section class="cta" id="contact">
-  <div class="cta__wave">
+<section class="cta-faq" id="contact">
+  <div class="cta-faq__wave">
     <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
       <path d="M0,50 C360,100 1080,0 1440,50 L1440,100 L0,100 Z"/>
     </svg>
   </div>
-  <div class="cta__container container">
-    <div class="cta__content">
-      <h2 class="cta__title">Vous souhaitez effectuer un diagnostic ou souscrire un contrat d'entretien&nbsp;?</h2>
 
-      <p class="cta__text">
+  <div class="cta-faq__layout container">
+    <!-- Left: CTA -->
+    <div class="cta-faq__cta">
+      <h2 class="cta-faq__title">Vous souhaitez effectuer un diagnostic ou souscrire un contrat d'entretien&nbsp;?</h2>
+
+      <p class="cta-faq__text">
         Cliquez sur le bouton WhatsApp et envoyez-nous les informations suivantes&nbsp;:
       </p>
 
-      <ul class="cta__list">
+      <ul class="cta-faq__list">
         <li>Nom de la ville</li>
         <li>Type de piscine concerné</li>
         <li>Si possible, une photo du local technique</li>
       </ul>
 
-      <p class="cta__response">Réponse en 72h, devis clair.</p>
+      <p class="cta-faq__response">Réponse en 72h, devis clair.</p>
 
-      <a href="https://wa.me/" class="cta__whatsapp" target="_blank" rel="noopener noreferrer">
+      <a href="https://wa.me/" class="cta-faq__whatsapp" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </svg>
         <span>Nous contacter sur WhatsApp</span>
       </a>
     </div>
+
+    <!-- Right: FAQ -->
+    <div class="cta-faq__faq" id="faq">
+      <span class="cta-faq__faq-label">FAQ</span>
+      <h2 class="cta-faq__faq-title">Vos questions sur l'<span class="text-water">entretien</span> et la <span class="text-water">maintenance</span> des piscines (83)</h2>
+
+      <div class="cta-faq__faq-list">
+        {faqs.map((faq) => (
+          <details class="cta-faq__item">
+            <summary class="cta-faq__question">
+              <span>{faq.question}</span>
+              <svg class="cta-faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path class="cta-faq__icon-drop" d="M12 3C12 3 7 9 7 13a5 5 0 0010 0c0-4-5-10-5-10z" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <div class="cta-faq__answer">
+              <p>{faq.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
-  .cta {
+  .cta-faq {
     position: relative;
     padding-block: var(--section-gap);
     background: var(--color-dark);
   }
 
-  .cta__wave {
+  .cta-faq__wave {
     position: absolute;
     top: -49px;
     left: 0;
@@ -50,52 +92,67 @@
     z-index: 2;
   }
 
-  .cta__wave svg {
+  .cta-faq__wave svg {
     width: 100%;
     height: 100%;
     display: block;
   }
 
-  .cta__wave path {
+  .cta-faq__wave path {
     fill: var(--color-dark);
   }
 
-  .cta__container {
-    position: relative;
-    z-index: var(--z-base);
+  /* Layout: side by side on desktop */
+  .cta-faq__layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-16);
+    align-items: start;
   }
 
-  .cta__content {
+  @media (min-width: 1024px) {
+    .cta-faq__layout {
+      grid-template-columns: 5fr 7fr;
+      gap: var(--space-16);
+    }
+  }
+
+  /* ═══════════════════════════════════════════
+     LEFT: CTA
+     ═══════════════════════════════════════════ */
+  .cta-faq__cta {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
     gap: var(--space-6);
-    max-width: 650px;
-    margin-inline: auto;
   }
 
-  .cta__title {
-    font-size: clamp(1.5rem, 4vw, 2.25rem);
+  @media (min-width: 1024px) {
+    .cta-faq__cta {
+      position: sticky;
+      top: 120px;
+    }
+  }
+
+  .cta-faq__title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: var(--font-bold);
     line-height: var(--leading-tight);
     color: var(--color-white);
   }
 
-  .cta__text {
-    font-size: var(--text-lg);
+  .cta-faq__text {
+    font-size: var(--text-base);
     color: rgba(255, 255, 255, 0.85);
     line-height: var(--leading-relaxed);
   }
 
-  .cta__list {
+  .cta-faq__list {
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
-    text-align: left;
   }
 
-  .cta__list li {
+  .cta-faq__list li {
     font-size: var(--text-base);
     color: rgba(255, 255, 255, 0.85);
     padding-left: var(--space-6);
@@ -103,24 +160,24 @@
     line-height: var(--leading-relaxed);
   }
 
-  .cta__list li::before {
+  .cta-faq__list li::before {
     content: '';
     position: absolute;
     left: 0;
     top: 10px;
     width: 8px;
     height: 8px;
-    background: var(--color-white);
+    background: var(--color-primary);
     border-radius: 50%;
   }
 
-  .cta__response {
+  .cta-faq__response {
     font-size: var(--text-lg);
     font-weight: var(--font-semibold);
     color: var(--color-white);
   }
 
-  .cta__whatsapp {
+  .cta-faq__whatsapp {
     display: inline-flex;
     align-items: center;
     gap: var(--space-3);
@@ -132,16 +189,115 @@
     border-radius: var(--radius-full);
     box-shadow: 0 8px 30px rgba(37, 211, 102, 0.3);
     transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s ease;
-    margin-top: var(--space-4);
+    margin-top: var(--space-2);
+    width: fit-content;
   }
 
-  .cta__whatsapp:hover {
+  .cta-faq__whatsapp:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 40px rgba(37, 211, 102, 0.4);
   }
 
-  .cta__whatsapp svg {
+  .cta-faq__whatsapp svg {
     width: 24px;
     height: 24px;
+  }
+
+  /* ═══════════════════════════════════════════
+     RIGHT: FAQ
+     ═══════════════════════════════════════════ */
+  .cta-faq__faq {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .cta-faq__faq-label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-logo-teal);
+  }
+
+  .cta-faq__faq-title {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-tight);
+    color: var(--color-white);
+  }
+
+  .cta-faq__faq-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .cta-faq__item {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .cta-faq__item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .cta-faq__item[open] {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .cta-faq__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    cursor: pointer;
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    color: var(--color-white);
+    list-style: none;
+  }
+
+  .cta-faq__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .cta-faq__icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    color: var(--color-primary);
+    transition: transform 0.3s ease;
+  }
+
+  .cta-faq__icon-drop {
+    transition: fill 0.3s ease;
+    fill: transparent;
+  }
+
+  .cta-faq__item[open] .cta-faq__icon {
+    transform: scale(1.15);
+  }
+
+  .cta-faq__item[open] .cta-faq__icon-drop {
+    fill: var(--color-primary);
+    stroke: var(--color-primary);
+  }
+
+  .cta-faq__answer {
+    padding: 0 var(--space-5) var(--space-5);
+  }
+
+  .cta-faq__answer p {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.65);
+    line-height: var(--leading-relaxed);
   }
 </style>

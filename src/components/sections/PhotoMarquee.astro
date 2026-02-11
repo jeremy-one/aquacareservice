@@ -1,0 +1,62 @@
+---
+import img1 from '../../assets/images/Divers piscine/IMG_3050.jpeg';
+import img2 from '../../assets/images/Divers piscine/IMG_2999.jpeg';
+import img3 from '../../assets/images/Divers piscine/IMG_4746.jpeg';
+import img4 from '../../assets/images/Divers piscine/IMG_3038.jpeg';
+import img5 from '../../assets/images/Avant Après/rattrapage eau verte/IMG_1066.JPG';
+import img6 from '../../assets/images/Divers piscine/IMG_4695.jpeg';
+
+const photos = [img1, img2, img3, img4, img5, img6];
+---
+
+<section class="photo-marquee" aria-label="Photos de réalisations">
+  <div class="photo-marquee__track">
+    {[...photos, ...photos].map((photo, i) => (
+      <img
+        src={photo.src}
+        alt=""
+        class="photo-marquee__img"
+        loading={i < 6 ? 'eager' : 'lazy'}
+        aria-hidden="true"
+      />
+    ))}
+  </div>
+</section>
+
+<style>
+  .photo-marquee {
+    width: 100%;
+    overflow: hidden;
+    background: var(--color-light);
+    line-height: 0;
+  }
+
+  .photo-marquee__track {
+    display: flex;
+    width: max-content;
+    animation: photoScroll 35s linear infinite;
+  }
+
+  .photo-marquee:hover .photo-marquee__track {
+    animation-play-state: paused;
+  }
+
+  .photo-marquee__img {
+    display: block;
+    height: 280px;
+    width: auto;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .photo-marquee__img {
+      height: 200px;
+    }
+  }
+
+  @keyframes photoScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+</style>
