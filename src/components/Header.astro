@@ -36,7 +36,7 @@ const serviceLinks = [
 </header>
 
 <!-- Full-screen menu -->
-<nav class="menu" id="menu" aria-hidden="true">
+<nav class="menu" id="menu" aria-hidden="true" data-lenis-prevent>
   <div class="menu__bg">
     <div class="menu__bg-panel menu__bg-panel--1"></div>
     <div class="menu__bg-panel menu__bg-panel--2"></div>
@@ -130,6 +130,14 @@ const serviceLinks = [
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(20px);
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  /* Header above menu when open, so toggle button is clickable */
+  body.menu-open .header {
+    z-index: calc(var(--z-menu) + 1);
+    background: var(--color-dark);
+    backdrop-filter: none;
+    box-shadow: none;
   }
 
   .header__container {
@@ -227,6 +235,10 @@ const serviceLinks = [
   /* ═══════════════════════════════════════════
      FULL-SCREEN MENU
      ═══════════════════════════════════════════ */
+  body.menu-open {
+    overflow: hidden;
+  }
+
   .menu {
     position: fixed;
     inset: 0;
@@ -237,12 +249,14 @@ const serviceLinks = [
 
   .menu.is-open {
     pointer-events: auto;
+    overflow-y: auto;
   }
 
   /* Animated background panels — bleu marine charte */
   .menu__bg {
-    position: absolute;
+    position: fixed;
     inset: 0;
+    pointer-events: none;
   }
 
   .menu__bg-panel {
@@ -277,9 +291,8 @@ const serviceLinks = [
   /* Container */
   .menu__container {
     position: relative;
-    height: 100%;
+    min-height: 100%;
     display: flex;
-    align-items: center;
     max-width: var(--container-max);
     margin-inline: auto;
     padding-inline: var(--container-padding);
@@ -291,16 +304,13 @@ const serviceLinks = [
     gap: var(--space-8);
     width: 100%;
     padding-block: var(--space-20);
-    overflow-y: auto;
-    max-height: 100vh;
+    margin-block: auto;
   }
 
   @media (min-width: 768px) {
     .menu__content {
       gap: var(--space-16);
       padding-block: var(--space-32);
-      overflow-y: visible;
-      max-height: none;
     }
   }
 
